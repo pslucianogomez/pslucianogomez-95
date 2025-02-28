@@ -12,10 +12,10 @@ import {
 } from 'react95';
 import logoIMG from '../assets/logo1.png';
 import { localStorageHelper } from '../constants';
+import { AppMenuBar } from '../components/AppBar/AppMenuBar';
 
 export const Layout = ({ element }: { element: any }) => {
 
-  const [open, setOpen] = useState(false);
   const isLogedIn = localStorageHelper.getItem('isLogedIn');
   const [isLoading, setIsLoading] = useState(true);
 
@@ -62,69 +62,7 @@ export const Layout = ({ element }: { element: any }) => {
         </div>
       )}
 
-      <AppBar style={{ top: "unset", bottom: 0 }}>
-        <Toolbar style={{ justifyContent: 'space-between' }}>
-
-          <div style={{ position: 'relative', display: 'inline-block' }}>
-            <Button
-              //disabled={true}
-              onClick={() => setOpen(!open)}
-              active={open}
-              style={{ fontWeight: 'bold' }}
-            >
-              <img
-                src={logoIMG}
-                alt='react95 logo'
-                style={{ height: '20px', marginRight: 4 }}
-              />
-              Start
-            </Button>
-            {open && (
-              <MenuList
-                style={{
-                  position: 'absolute',
-                  left: '0',
-                  bottom: '100%',
-                  width: '200px',
-                }}
-                onClick={() => setOpen(false)}
-              >
-                <MenuListItem
-                  onClick={() => window.location.href = '/profile'}>
-                  {"Profile"}
-                  <span role='img' aria-label='👨‍💻 '>
-                    {`👨‍💻 `}
-                  </span>
-                </MenuListItem>
-                <MenuListItem
-                  onClick={() => window.location.href = '/experience'}>
-                  {"Experience"}
-                  <span role='img' aria-label='📁 '>
-                    {`📁 `}
-                  </span>
-                </MenuListItem>
-                <Separator />
-                <MenuListItem
-                  //disabled
-                  onClick={() => {
-                    localStorageHelper.setItem('isLogedIn', false);
-                    window.location.href = '/login';
-                  }}
-                >
-                  {"Logout"}
-                  <span role='img' aria-label='🔙'>
-                    🔙
-                  </span>
-                </MenuListItem>
-              </MenuList>
-            )}
-          </div>
-
-          <TextInput placeholder='Search...' width={150} />
-
-        </Toolbar>
-      </AppBar>
-
+      <AppMenuBar />
     </>
   );
 }

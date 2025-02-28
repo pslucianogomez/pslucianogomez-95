@@ -17,6 +17,7 @@ import { Show10 } from './pages/experience/show10';
 import { Show9 } from './pages/experience/show9';
 import { Show8 } from './pages/experience/show8';
 import { Show7 } from './pages/experience/show7';
+import { Show6 } from './pages/experience/show6';
 
 const GlobalStyles = createGlobalStyle`
   ${styleReset}
@@ -62,6 +63,7 @@ const App = () => (
               <Route path="9" index element={<Layout element={<Show9 />} />} />
               <Route path="8" index element={<Layout element={<Show8 />} />} />
               <Route path="7" index element={<Layout element={<Show7 />} />} />
+              <Route path="6" index element={<Layout element={<Show6 />} />} />
             </Route>
             <Route path="profile">
               <Route index element={<Layout element={<Profile />} />} />

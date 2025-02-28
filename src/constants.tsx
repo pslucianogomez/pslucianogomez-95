@@ -83,7 +83,7 @@ export const experiences = [
   { "id": 9, "title": ".NET Backend Developer Sr.", "company": "Venon Solutions", "client": "The Walker Group", "techStack": ".NET Core, E.F. Core, SQL Server, Azure", "period": "Aug. 2020 - Nov. 2021" },
   { "id": 8, "title": ".NET Backend Developer Sr.", "company": "Santex", "client": "ITA Group Inc.", "techStack": ".NET Core, E.F. Core, SQL Server, Azure", "period": "Jul. 2017 - Aug. 2020" },
   { "id": 7, "title": ".NET Backend Developer Sr.", "company": "Agilesight", "client": "Microsoft", "techStack": ".NET Core, E.F. Core, SQL Server, Azure", "period": "Feb. 2016 - Jul. 2017" },
-  { "id": 6, "title": ".NET Backend Developer Sr.", "company": "GlobalLogic", "client": "Disa Corp.", "techStack": ".NET Framework, MVC 3/4, E.F., SQL Server", "period": "Aug. 2015 - Jan. 2016" },
+  // { "id": 6, "title": ".NET Backend Developer Sr.", "company": "GlobalLogic", "client": "Disa Corp.", "techStack": ".NET Framework, MVC 3/4, E.F., SQL Server", "period": "Aug. 2015 - Jan. 2016" },
   { "id": 5, "title": ".NET Backend Developer Sr.", "company": "Globant", "client": "OCA", "techStack": ".NET Framework, MVC 3/4, E.F., SQL Server", "period": "Jan. 2015 - Jul. 2015" },
   { "id": 4, "title": ".NET Backend Developer Sr.", "company": "Globant", "client": "Deloitte", "techStack": ".NET Framework, MVC 3/4, E.F., SQL Server", "period": "Aug. 2014 - Dec. 2014" },
   { "id": 3, "title": ".NET Backend Developer Sr.", "company": "Sofrecom", "client": "Telecom/Personal", "techStack": ".NET Framework, MVC 3/4, E.F., SQL Server", "period": "Jan. 2015 - Jul. 2015" },
