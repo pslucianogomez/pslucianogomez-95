@@ -1,4 +1,4 @@
-import { Divider, styleReset } from 'react95';
+import { styleReset } from 'react95';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
 /* Pick a theme of your choice */
@@ -10,14 +10,11 @@ import ms_sans_serif_bold from 'react95/dist/fonts/ms_sans_serif_bold.woff2';
 import { Layout } from './pages/Layout';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { LoginPage } from './pages/login/index';
-import { ExperienceList } from './pages/experience/list';
+import { ExperienceList } from './pages/experience/ExperienceList';
 import { Profile } from './pages/profile';
-import { Show11 } from './pages/experience/show11';
-import { Show10 } from './pages/experience/show10';
-import { Show9 } from './pages/experience/show9';
-import { Show8 } from './pages/experience/show8';
-import { Show7 } from './pages/experience/show7';
-import { Show6 } from './pages/experience/show6';
+import { ExperiencePage } from './pages/experience/ExperiencePage';
+import { ContactPage } from './pages/contact';
+import { LanguageProvider } from './contexts/LanguageContext';
 
 const GlobalStyles = createGlobalStyle`
   ${styleReset}
@@ -40,40 +37,30 @@ const GlobalStyles = createGlobalStyle`
 
 const App = () => (
   <div>
-
     <GlobalStyles />
     <ThemeProvider theme={original}>
-      <BrowserRouter>
-
-        <Routes>
-          <Route path="*" element={<Layout element=
-            {
-              <div>
-                {"not found"}
-              </div>
-            } />
-          } />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="/">
-            <Route index element={<Layout element={null} />} />
-            <Route path="experience">
-              <Route index element={<Layout element={<ExperienceList />} />} />
-              <Route path="11" index element={<Layout element={<Show11 />} />} />
-              <Route path="10" index element={<Layout element={<Show10 />} />} />
-              <Route path="9" index element={<Layout element={<Show9 />} />} />
-              <Route path="8" index element={<Layout element={<Show8 />} />} />
-              <Route path="7" index element={<Layout element={<Show7 />} />} />
-              <Route path="6" index element={<Layout element={<Show6 />} />} />
+      <LanguageProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="*" element={<Layout element={<div>not found</div>} />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="/">
+              <Route index element={<Layout element={null} />} />
+              <Route path="experience">
+                <Route index element={<Layout element={<ExperienceList />} />} />
+                <Route path=":id" element={<ExperiencePage />} />
+              </Route>
+              <Route path="profile">
+                <Route index element={<Layout element={<Profile />} />} />
+              </Route>
+              <Route path="contact">
+                <Route index element={<Layout element={<ContactPage />} />} />
+              </Route>
             </Route>
-            <Route path="profile">
-              <Route index element={<Layout element={<Profile />} />} />
-            </Route>
-          </Route>
-        </Routes>
-
-      </BrowserRouter>
+          </Routes>
+        </BrowserRouter>
+      </LanguageProvider>
     </ThemeProvider>
-
   </div>
 );
 

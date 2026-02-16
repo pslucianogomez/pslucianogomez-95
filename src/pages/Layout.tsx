@@ -23,7 +23,7 @@ export const Layout = ({ element }: { element: any }) => {
     setTimeout(delayedMessage, delay);
   }, [isLoading]);
 
-  const delay: number = 1000;
+  const delay: number = 500;
 
   const delayedMessage: () => void = () => {
     //console.log("This message is displayed after 4 seconds.");
