@@ -78,66 +78,41 @@ const Gallery = styled.div`
   gap: ${({ theme }) => theme.space['3']}px;
 `;
 
-// Cozy CRT palette — local to the games console (warm phosphor, not the
-// site's stark ink/paper) so the previews read as a glowing little terminal.
-const CRT_BG = '#181410';
-const CRT_BAR = '#241d16';
-const CRT_TEXT = '#e8b06a';
-const CRT_DIM = '#9c7a4f';
-
 const GameWindow = styled.div`
   border: ${({ theme }) => theme.border.thick};
   box-shadow: ${({ theme }) => theme.shadow.base};
-  background: ${CRT_BG};
-  overflow: hidden;
+  background: ${({ theme }) => theme.colors.ink};
 `;
 
 const GameBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 5px ${({ theme }) => theme.space['2']}px;
-  background: ${CRT_BAR};
-  color: ${CRT_TEXT};
-  border-bottom: 1px solid ${CRT_DIM};
+  padding: 4px ${({ theme }) => theme.space['2']}px;
+  background: ${({ theme }) => theme.colors.ink};
+  color: ${({ theme }) => theme.colors.inkPaper};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.muted};
   font-family: ${({ theme }) => theme.fontFamily.mono};
   font-size: ${({ theme }) => theme.fontSize.xs};
   letter-spacing: 1px;
 `;
 
 const GameScreen = styled.pre`
-  position: relative;
   margin: 0;
-  padding: ${({ theme }) => theme.space['4']}px;
-  background:
-    radial-gradient(120% 120% at 50% 0%, rgba(232, 176, 106, 0.06), transparent 60%),
-    ${CRT_BG};
-  color: ${CRT_TEXT};
-  text-shadow: 0 0 6px rgba(232, 176, 106, 0.35);
+  padding: ${({ theme }) => theme.space['3']}px;
+  background: ${({ theme }) => theme.colors.ink};
+  color: ${({ theme }) => theme.colors.paper};
   font-family: ${({ theme }) => theme.fontFamily.mono};
-  font-size: 11px;
-  line-height: 1.65;
+  font-size: 10px;
+  line-height: 1.5;
   white-space: pre;
   overflow-x: auto;
-
-  /* subtle CRT scanlines */
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: repeating-linear-gradient(
-      to bottom,
-      transparent 0 2px,
-      rgba(0, 0, 0, 0.18) 2px 3px
-    );
-  }
 `;
 
 const GameShot = styled.img`
   display: block;
   width: 100%;
-  background: ${CRT_BG};
+  background: ${({ theme }) => theme.colors.ink};
 `;
 
 const GameFoot = styled.div`
