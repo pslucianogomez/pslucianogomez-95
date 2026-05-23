@@ -4,15 +4,15 @@ import { bootLines, TOTAL_BOOT_MS, COMPACT_BOOT_MS, COMPACT_LINE_COUNT } from '.
 
 const fadeOut = keyframes`from { opacity: 1 } to { opacity: 0 }`;
 
-const Root = styled.div<{ $exiting: boolean; $compact: boolean }>`
+const Root = styled.div<{ $exiting: boolean }>`
   position: fixed;
   inset: 0;
   background: ${({ theme }) => theme.colors.ink};
   color: ${({ theme }) => theme.colors.paper};
   font-family: ${({ theme }) => theme.fontFamily.mono};
-  font-size: ${({ theme, $compact }) => ($compact ? '10px' : theme.fontSize.md)};
-  line-height: ${({ $compact }) => ($compact ? 1.5 : 1.7)};
-  padding: ${({ theme, $compact }) => ($compact ? theme.space['4'] : theme.space['6'])}px;
+  font-size: 10px;
+  line-height: 1.5;
+  padding: ${({ theme }) => theme.space['4']}px;
   z-index: 9999;
   ${({ $exiting }) => $exiting && css`animation: ${fadeOut} 200ms forwards;`}
 `;
@@ -58,7 +58,7 @@ export const BootSequence = ({ onDone, compact = false }: { onDone: () => void; 
   }, []);
 
   return (
-    <Root $exiting={exiting} $compact={compact}>
+    <Root $exiting={exiting}>
       {lines.slice(0, visibleCount).map((l, i) => (
         <Line key={i}>{l.text}{i === visibleCount - 1 && <Cursor>_</Cursor>}</Line>
       ))}
