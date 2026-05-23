@@ -1,50 +1,36 @@
-# React + TypeScript + Vite
+# pslucianogomez95
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio of Pedro S. Luciano Gomez. Brutalist cream / Bitcoin-orange / black redesign on top of a custom desktop+windows React app.
 
-Currently, two official plugins are available:
+## Development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+npm install
+cp .env.example .env   # fill in EmailJS credentials
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Required environment variables (for the Contact form)
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+| Variable | Where to find it |
+|---|---|
+| `VITE_EMAILJS_SERVICE_ID` | EmailJS dashboard → Email Services |
+| `VITE_EMAILJS_TEMPLATE_ID` | EmailJS dashboard → Email Templates |
+| `VITE_EMAILJS_PUBLIC_KEY` | EmailJS dashboard → Account → API Keys |
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+Without these the form will render but submission shows a red error notice.
+
+## Design
+
+See `docs/superpowers/specs/2026-05-23-web3-brutalist-redesign-design.md` for the full design spec.
+
+## Build
+
+```bash
+npm run build
+npm run preview
 ```
+
+## Stack
+
+React 19, TypeScript (strict), Vite 6, styled-components, react-router 7, EmailJS, @fontsource (Space Grotesk + JetBrains Mono + Inter).
