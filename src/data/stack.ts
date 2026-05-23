@@ -23,8 +23,30 @@ export const stack: StackGroup[] = [
       { name: 'Node.js',                  level: 'medium' },
       { name: 'HTML / CSS',               level: 'advanced' },
       { name: 'Java',                     level: 'medium' },
-      { name: 'Python',                   level: 'low' },
+      { name: 'Python',                   level: 'medium' },
       { name: 'C / C++',                  level: 'low' },
+    ],
+  },
+  {
+    category: 'AI / ML',
+    items: [
+      { name: 'Azure OpenAI',             level: 'advanced' },
+      { name: 'LLMs / RAG',               level: 'advanced' },
+      { name: 'LangChain',                level: 'medium' },
+      { name: 'PyTorch',                  level: 'medium' },
+      { name: 'TensorFlow',               level: 'medium' },
+      { name: 'scikit-learn',             level: 'medium' },
+      { name: 'Pandas / NumPy',           level: 'medium' },
+      { name: 'Jupyter',                  level: 'medium' },
+      { name: 'MLflow',                   level: 'medium' },
+      { name: 'Azure ML',                 level: 'medium' },
+    ],
+  },
+  {
+    category: 'CLOUD',
+    items: [
+      { name: 'Azure',                    level: 'advanced' },
+      { name: 'Google Cloud',             level: 'medium' },
     ],
   },
   {
@@ -35,6 +57,18 @@ export const stack: StackGroup[] = [
       { name: 'PostgreSQL',               level: 'advanced' },
       { name: 'Cosmos DB',                level: 'advanced' },
       { name: 'MongoDB',                  level: 'advanced' },
+    ],
+  },
+  {
+    category: 'ARCHITECTURE & MESSAGING',
+    items: [
+      { name: 'Clean Architecture',       level: 'advanced' },
+      { name: 'DDD',                      level: 'advanced' },
+      { name: 'Microservices',            level: 'advanced' },
+      { name: 'gRPC',                     level: 'advanced' },
+      { name: 'Redis',                    level: 'advanced' },
+      { name: 'Kafka',                    level: 'medium' },
+      { name: 'RabbitMQ',                 level: 'medium' },
     ],
   },
   {
@@ -64,6 +98,7 @@ export const stack: StackGroup[] = [
       { name: 'Agile (Scrum / Kanban)',   level: 'advanced' },
       { name: 'Docker',                   level: 'medium' },
       { name: 'Kubernetes',               level: 'medium' },
+      { name: 'Vite',                     level: 'medium' },
       { name: 'SonarQube',                level: 'low' },
     ],
   },
