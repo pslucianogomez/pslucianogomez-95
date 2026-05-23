@@ -8,8 +8,10 @@ const Frame = styled.div<{ $active: boolean; $dragging: boolean }>`
   position: absolute;
   background: ${({ theme }) => theme.colors.inkPaper};
   border: ${({ theme }) => theme.border.thick};
+  /* Only the active (or dragging) window casts a shadow — keeps overlapping
+     windows clean instead of stacking multiple hard shadows. */
   box-shadow: ${({ theme, $active, $dragging }) =>
-    $dragging ? theme.shadow.drag : $active ? theme.shadow.focus : theme.shadow.base};
+    $dragging ? theme.shadow.drag : $active ? theme.shadow.focus : 'none'};
   display: flex;
   flex-direction: column;
   min-width: 240px;
