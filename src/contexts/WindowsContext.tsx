@@ -35,24 +35,27 @@ const DEFAULTS: Record<WindowId, { position: { x: number; y: number }; size: { w
   'not-found': { position: { x: 200, y: 200 }, size: { w: 360, h: 200 } },
 };
 
-const nextZ = (prev: OpenWindow[]) =>
-  prev.reduce((max, w) => (w.zIndex > max ? w.zIndex : max), Z_BASE) + 1;
-
 export const WindowsProvider = ({ children }: { children: ReactNode }) => {
   const [windows, setWindows] = useState<OpenWindow[]>([]);
+
+  // Highest z among VISIBLE (non-minimized) windows. Used for the no-op
+  // check so reopening/refocusing the current top window doesn't churn state
+  // (which would ping-pong with the URL sync effect → navigation throttle).
+  const topVisibleZ = (ws: OpenWindow[]) =>
+    ws.reduce((m, w) => (!w.minimized && w.zIndex > m ? w.zIndex : m), Z_BASE);
+  const globalMaxZ = (ws: OpenWindow[]) =>
+    ws.reduce((m, w) => (w.zIndex > m ? w.zIndex : m), Z_BASE);
 
   const open = useCallback((id: WindowId, route: string) => {
     setWindows((prev) => {
       const existing = prev.find((w) => w.id === id);
       if (existing) {
-        // Already top and visible → no-op (avoids re-renders and z thrash).
-        const maxZ = prev.reduce((m, w) => (w.zIndex > m ? w.zIndex : m), Z_BASE);
-        if (!existing.minimized && existing.zIndex === maxZ) return prev;
-        const z = maxZ + 1;
+        if (!existing.minimized && existing.zIndex >= topVisibleZ(prev)) return prev;
+        const z = globalMaxZ(prev) + 1;
         return prev.map((w) => (w.id === id ? { ...w, minimized: false, zIndex: z } : w));
       }
       const def = DEFAULTS[id];
-      return [...prev, { id, route, position: def.position, size: def.size, zIndex: nextZ(prev), minimized: false }];
+      return [...prev, { id, route, position: def.position, size: def.size, zIndex: globalMaxZ(prev) + 1, minimized: false }];
     });
   }, []);
 
@@ -64,10 +67,8 @@ export const WindowsProvider = ({ children }: { children: ReactNode }) => {
     setWindows((prev) => {
       const target = prev.find((w) => w.id === id);
       if (!target) return prev;
-      // Already top and visible → no-op.
-      const maxZ = prev.reduce((m, w) => (w.zIndex > m ? w.zIndex : m), Z_BASE);
-      if (!target.minimized && target.zIndex === maxZ) return prev;
-      const z = maxZ + 1;
+      if (!target.minimized && target.zIndex >= topVisibleZ(prev)) return prev;
+      const z = globalMaxZ(prev) + 1;
       return prev.map((w) => (w.id === id ? { ...w, minimized: false, zIndex: z } : w));
     });
   }, []);

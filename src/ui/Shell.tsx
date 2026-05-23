@@ -38,27 +38,32 @@ export const Shell = ({ children }: { children: (id: WindowId) => React.ReactNod
   }, [open]);
   useEffect(() => () => tourTimers.current.forEach(clearTimeout), []);
 
-  // sync route → open window
+  // sync route → open window (deep links, back/forward). open() is stable
+  // and no-ops when the matched window is already the visible top.
   useEffect(() => {
     const match = ICON_MAP.find((i) => location.pathname.startsWith(i.route));
     if (match) open(match.id, match.route);
   }, [location.pathname, open]);
 
-  // sync focused window → URL (replace, not push). Only navigate when the
-  // top-window changes — not on every windows[] mutation (e.g. dragging).
+  // sync focused window → URL (replace, not push). Depends ONLY on topId.
+  // navigate is read through a ref because react-router gives it a new
+  // identity on every location change — keeping it in deps would re-fire
+  // this effect after its own navigate and ping-pong with the effect above
+  // (the "Throttling navigation" loop).
+  const navRef = useRef(navigate);
+  navRef.current = navigate;
+  const pathRef = useRef(location.pathname);
+  pathRef.current = location.pathname;
   useEffect(() => {
     if (topId) {
       const match = ICON_MAP.find((i) => i.id === topId);
-      if (match && !location.pathname.startsWith(match.route)) {
-        navigate(match.route, { replace: true });
+      if (match && !pathRef.current.startsWith(match.route)) {
+        navRef.current(match.route, { replace: true });
       }
-    } else if (location.pathname !== '/') {
-      navigate('/', { replace: true });
+    } else if (pathRef.current !== '/') {
+      navRef.current('/', { replace: true });
     }
-    // location.pathname intentionally excluded — only react to topId changes
-    // to avoid the open()→navigate()→open() feedback loop Chrome throttles.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [topId, navigate]);
+  }, [topId]);
 
   // Boot intro plays on every load (desktop AND mobile). First visit shows the
   // full sequence; once seen (localStorage flag) returning visits get a short,
