@@ -60,6 +60,7 @@ const Detail = styled.div`
   font-family: ${({ theme }) => theme.fontFamily.body};
   font-size: ${({ theme }) => theme.fontSize.md};
   line-height: 1.45;
+  white-space: pre-line;
 `;
 
 const Techs = styled.div`

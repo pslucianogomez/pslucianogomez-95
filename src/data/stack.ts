@@ -1,7 +1,8 @@
+export type StackLevel = 'advanced' | 'medium' | 'low';
+
 export interface StackItem {
   name: string;
-  years: number;
-  core?: boolean;
+  level: StackLevel;
 }
 
 export interface StackGroup {
@@ -13,41 +14,57 @@ export const stack: StackGroup[] = [
   {
     category: 'LANGUAGES',
     items: [
-      { name: 'C#', years: 15, core: true },
-      { name: 'TypeScript', years: 6 },
-      { name: 'JavaScript', years: 12 },
-      { name: 'SQL', years: 14 },
+      { name: 'C# / .NET',                level: 'advanced' },
+      { name: 'VB .NET',                  level: 'advanced' },
+      { name: 'JavaScript / jQuery',      level: 'advanced' },
+      { name: 'TypeScript',               level: 'medium' },
+      { name: 'React',                    level: 'advanced' },
+      { name: 'Next.js',                  level: 'medium' },
+      { name: 'Node.js',                  level: 'medium' },
+      { name: 'HTML / CSS',               level: 'advanced' },
+      { name: 'Java',                     level: 'medium' },
+      { name: 'Python',                   level: 'low' },
+      { name: 'C / C++',                  level: 'low' },
     ],
   },
   {
-    category: 'FRAMEWORKS',
+    category: 'DATABASES',
     items: [
-      { name: '.NET', years: 15, core: true },
-      { name: 'React', years: 6, core: true },
-      { name: 'Entity Framework', years: 10 },
-      { name: 'ASP.NET MVC', years: 12 },
+      { name: 'SQL Server (2005-2022)',   level: 'advanced' },
+      { name: 'MySQL',                    level: 'advanced' },
+      { name: 'PostgreSQL',               level: 'advanced' },
+      { name: 'Cosmos DB',                level: 'advanced' },
+      { name: 'MongoDB',                  level: 'advanced' },
     ],
   },
   {
-    category: 'CLOUD',
+    category: 'MOBILE',
     items: [
-      { name: 'Azure', years: 8, core: true },
-      { name: 'Azure DevOps', years: 6 },
+      { name: 'Ionic (Cordova)',          level: 'medium' },
+      { name: 'React Native',             level: 'medium' },
+      { name: 'Xamarin',                  level: 'low' },
     ],
   },
   {
-    category: 'DATA',
+    category: 'TOOLS & PRACTICES',
     items: [
-      { name: 'SQL Server', years: 14 },
-      { name: 'PostgreSQL', years: 4 },
-    ],
-  },
-  {
-    category: 'TOOLS',
-    items: [
-      { name: 'Git', years: 12 },
-      { name: 'Docker', years: 5 },
-      { name: 'Vite', years: 2 },
+      { name: 'Git',                      level: 'advanced' },
+      { name: 'Azure DevOps',             level: 'advanced' },
+      { name: 'Jenkins',                  level: 'advanced' },
+      { name: 'Jira',                     level: 'advanced' },
+      { name: 'Confluence',               level: 'advanced' },
+      { name: 'TFS',                      level: 'advanced' },
+      { name: 'SVN',                      level: 'advanced' },
+      { name: 'Swagger',                  level: 'advanced' },
+      { name: 'Postman',                  level: 'advanced' },
+      { name: 'Telerik',                  level: 'advanced' },
+      { name: 'DevExpress',               level: 'advanced' },
+      { name: 'Material UI',              level: 'advanced' },
+      { name: 'Bootstrap',                level: 'advanced' },
+      { name: 'Agile (Scrum / Kanban)',   level: 'advanced' },
+      { name: 'Docker',                   level: 'medium' },
+      { name: 'Kubernetes',               level: 'medium' },
+      { name: 'SonarQube',                level: 'low' },
     ],
   },
 ];

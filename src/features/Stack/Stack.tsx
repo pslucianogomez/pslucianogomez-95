@@ -36,6 +36,12 @@ const Badge = styled.span<{ $core?: boolean }>`
   cursor: help;
 `;
 
+const LEVEL_LABEL: Record<'advanced' | 'medium' | 'low', string> = {
+  advanced: 'ADVANCED',
+  medium:   'MEDIUM',
+  low:      'LOW',
+};
+
 export const Stack = () => (
   <div>
     {stack.map((g) => (
@@ -43,7 +49,7 @@ export const Stack = () => (
         <Category>{g.category}</Category>
         <Grid>
           {g.items.map((it) => (
-            <Badge key={it.name} $core={it.core} title={`${it.years}Y`}>
+            <Badge key={it.name} $core={it.level === 'advanced'} title={LEVEL_LABEL[it.level]}>
               {it.name}
             </Badge>
           ))}
