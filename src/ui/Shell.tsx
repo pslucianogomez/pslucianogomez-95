@@ -48,19 +48,18 @@ export const Shell = ({ children }: { children: (id: WindowId) => React.ReactNod
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [topId, navigate]);
 
-  // Boot intro plays on every load (no localStorage gating).
+  // Boot intro plays on every load (no localStorage gating), desktop AND mobile.
   const [showBoot, setShowBoot] = useState(true);
+  const boot = showBoot && <BootSequence onDone={() => setShowBoot(false)} />;
 
   const isMobile = useIsMobile();
   if (isMobile) {
-    return <MobileLayout render={children} />;
+    return <>{boot}<MobileLayout render={children} /></>;
   }
 
   return (
     <>
-      {showBoot && (
-        <BootSequence onDone={() => setShowBoot(false)} />
-      )}
+      {boot}
       <StatusStrip language={language} onToggleLanguage={() => setLanguage(language === 'es' ? 'en' : 'es')} />
       <Desktop
         icons={ICON_MAP.map((i) => (
