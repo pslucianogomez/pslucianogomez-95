@@ -19,12 +19,14 @@ const RowLabel = styled.span`
   opacity: 0.6;
 `;
 
-const Value = styled.span`
+const Value = styled.span<{ $truncate?: boolean }>`
   font-family: ${({ theme }) => theme.fontFamily.display};
   font-weight: 500;
   font-size: ${({ theme }) => theme.fontSize.md};
   min-width: 0;
-  overflow-wrap: anywhere;
+  ${({ $truncate }) => $truncate
+    ? `white-space: nowrap; overflow: hidden; text-overflow: ellipsis;`
+    : `overflow-wrap: anywhere;`}
 `;
 
 export const Now = () => {
@@ -36,7 +38,7 @@ export const Now = () => {
         .map((r) => (
           <Row key={r.label}>
             <RowLabel>{r.label}</RowLabel>
-            <Value>{r.value![language]}</Value>
+            <Value $truncate={r.truncate} title={r.value![language]}>{r.value![language]}</Value>
           </Row>
         ))}
     </div>
