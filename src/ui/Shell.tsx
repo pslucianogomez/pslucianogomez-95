@@ -8,6 +8,8 @@ import { useWindows, type WindowId } from '../contexts/WindowsContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { BootSequence } from './Boot';
 import { usePersistedState } from '../hooks/usePersistedState';
+import { useIsMobile } from '../hooks/useIsMobile';
+import { MobileLayout } from './MobileLayout';
 
 const ICON_MAP: Array<{ id: WindowId; route: string; glyph: GlyphName; tKey: string }> = [
   { id: 'profile',    route: '/profile',    glyph: 'user',      tKey: 'icon.profile' },
@@ -45,6 +47,11 @@ export const Shell = ({ children }: { children: (id: WindowId) => React.ReactNod
 
   const [bootSeen, setBootSeen] = usePersistedState<boolean>('pslg.boot-seen', false);
   const [showBoot, setShowBoot] = useState(!bootSeen);
+
+  const isMobile = useIsMobile();
+  if (isMobile) {
+    return <MobileLayout render={children} />;
+  }
 
   return (
     <>
