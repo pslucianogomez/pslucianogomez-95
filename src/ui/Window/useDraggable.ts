@@ -14,13 +14,17 @@ export function useDraggable({ initial, bounds, snap = 0, onDragStart, onDragEnd
   const [position, setPosition] = useState<Position>(initial);
   const [isDragging, setIsDragging] = useState(false);
   const offsetRef = useRef<Position>({ x: 0, y: 0 });
+  const positionRef = useRef<Position>(initial);
+
+  // Keep ref in sync so handlers can read latest without re-binding.
+  positionRef.current = position;
 
   const onPointerDown = useCallback((e: React.PointerEvent) => {
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
-    offsetRef.current = { x: e.clientX - position.x, y: e.clientY - position.y };
+    offsetRef.current = { x: e.clientX - positionRef.current.x, y: e.clientY - positionRef.current.y };
     setIsDragging(true);
     onDragStart?.();
-  }, [position, onDragStart]);
+  }, [onDragStart]);
 
   useEffect(() => {
     if (!isDragging) return;
@@ -39,15 +43,20 @@ export function useDraggable({ initial, bounds, snap = 0, onDragStart, onDragEnd
     };
     const up = () => {
       setIsDragging(false);
-      onDragEnd?.(position);
+      onDragEnd?.(positionRef.current);
+    };
+    const cancel = () => {
+      setIsDragging(false);
     };
     window.addEventListener('pointermove', move);
     window.addEventListener('pointerup', up);
+    window.addEventListener('pointercancel', cancel);
     return () => {
       window.removeEventListener('pointermove', move);
       window.removeEventListener('pointerup', up);
+      window.removeEventListener('pointercancel', cancel);
     };
-  }, [isDragging, bounds, snap, position, onDragEnd]);
+  }, [isDragging, bounds, snap, onDragEnd]);
 
   return { position, isDragging, onPointerDown, setPosition };
 }
