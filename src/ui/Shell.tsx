@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Desktop, DesktopIcon, StatusStrip } from './Desktop';
 import { Taskbar, TaskbarItem } from './Taskbar';
 import { Window } from './Window';
@@ -25,6 +25,17 @@ export const Shell = ({ children }: { children: (id: WindowId) => React.ReactNod
   const { t, language, setLanguage } = useLanguage();
 
   const [highlighted, setHighlighted] = useState<WindowId | null>(null);
+
+  // START button → quick guided tour: open each window in sequence so a
+  // visitor sees every part of the site in one go.
+  const tourTimers = useRef<number[]>([]);
+  const runTour = useCallback(() => {
+    tourTimers.current.forEach(clearTimeout);
+    tourTimers.current = ICON_MAP.map((m, i) =>
+      window.setTimeout(() => open(m.id, m.route), i * 850),
+    );
+  }, [open]);
+  useEffect(() => () => tourTimers.current.forEach(clearTimeout), []);
 
   // sync route → open window
   useEffect(() => {
@@ -106,6 +117,7 @@ export const Shell = ({ children }: { children: (id: WindowId) => React.ReactNod
         })}
       </Desktop>
       <Taskbar
+        onStart={runTour}
         items={windows.map((w) => {
           const meta = ICON_MAP.find((m) => m.id === w.id);
           return (

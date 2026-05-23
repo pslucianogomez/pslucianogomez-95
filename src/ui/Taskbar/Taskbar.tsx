@@ -57,9 +57,9 @@ const Clock = () => {
   return <span>{hh}:{mm} {tz}</span>;
 };
 
-export const Taskbar = ({ items }: { items: ReactNode }) => (
+export const Taskbar = ({ items, onStart }: { items: ReactNode; onStart?: () => void }) => (
   <Bar>
-    <Start aria-label="start" tabIndex={-1}>⬢ Start</Start>
+    <Start aria-label="start" onClick={onStart}>⬢ Start</Start>
     {items}
     <Right>
       <BlockBadge />
