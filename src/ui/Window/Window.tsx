@@ -3,13 +3,12 @@ import type { ReactNode } from 'react';
 import { useDraggable, type Position } from './useDraggable';
 import { WindowTitleBar } from './WindowTitleBar';
 
-const Frame = styled.div<{ $active: boolean; $dragging: boolean; $z: number }>`
+const Frame = styled.div<{ $active: boolean; $dragging: boolean }>`
   position: absolute;
   background: ${({ theme }) => theme.colors.inkPaper};
   border: ${({ theme }) => theme.border.thick};
   box-shadow: ${({ theme, $active, $dragging }) =>
     $dragging ? theme.shadow.drag : $active ? theme.shadow.focus : theme.shadow.base};
-  z-index: ${({ $z }) => $z};
   display: flex;
   flex-direction: column;
   min-width: 240px;
@@ -49,8 +48,7 @@ export const Window = ({
     <Frame
       $active={isActive}
       $dragging={isDragging}
-      $z={zIndex}
-      style={{ left: pos.x, top: pos.y, width: size?.w, height: size?.h }}
+      style={{ left: pos.x, top: pos.y, width: size?.w, height: size?.h, zIndex }}
       onMouseDownCapture={() => { if (!isActive) onFocus(); }}
     >
       <WindowTitleBar

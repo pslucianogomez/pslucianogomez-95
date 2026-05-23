@@ -42,13 +42,16 @@ export const WindowsProvider = ({ children }: { children: ReactNode }) => {
 
   const open = useCallback((id: WindowId, route: string) => {
     setWindows((prev) => {
-      const z = nextZ(prev);
       const existing = prev.find((w) => w.id === id);
       if (existing) {
+        // Already top and visible → no-op (avoids re-renders and z thrash).
+        const maxZ = prev.reduce((m, w) => (w.zIndex > m ? w.zIndex : m), Z_BASE);
+        if (!existing.minimized && existing.zIndex === maxZ) return prev;
+        const z = maxZ + 1;
         return prev.map((w) => (w.id === id ? { ...w, minimized: false, zIndex: z } : w));
       }
       const def = DEFAULTS[id];
-      return [...prev, { id, route, position: def.position, size: def.size, zIndex: z, minimized: false }];
+      return [...prev, { id, route, position: def.position, size: def.size, zIndex: nextZ(prev), minimized: false }];
     });
   }, []);
 
@@ -58,7 +61,12 @@ export const WindowsProvider = ({ children }: { children: ReactNode }) => {
 
   const focus = useCallback((id: WindowId) => {
     setWindows((prev) => {
-      const z = nextZ(prev);
+      const target = prev.find((w) => w.id === id);
+      if (!target) return prev;
+      // Already top and visible → no-op.
+      const maxZ = prev.reduce((m, w) => (w.zIndex > m ? w.zIndex : m), Z_BASE);
+      if (!target.minimized && target.zIndex === maxZ) return prev;
+      const z = maxZ + 1;
       return prev.map((w) => (w.id === id ? { ...w, minimized: false, zIndex: z } : w));
     });
   }, []);

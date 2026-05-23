@@ -7,7 +7,6 @@ import { Glyph, type GlyphName } from './Glyph';
 import { useWindows, type WindowId } from '../contexts/WindowsContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { BootSequence } from './Boot';
-import { usePersistedState } from '../hooks/usePersistedState';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { MobileLayout } from './MobileLayout';
 
@@ -33,7 +32,8 @@ export const Shell = ({ children }: { children: (id: WindowId) => React.ReactNod
     if (match) open(match.id, match.route);
   }, [location.pathname, open]);
 
-  // sync focused window → URL (replace, not push)
+  // sync focused window → URL (replace, not push). Only navigate when the
+  // top-window changes — not on every windows[] mutation (e.g. dragging).
   useEffect(() => {
     if (topId) {
       const match = ICON_MAP.find((i) => i.id === topId);
@@ -43,10 +43,13 @@ export const Shell = ({ children }: { children: (id: WindowId) => React.ReactNod
     } else if (location.pathname !== '/') {
       navigate('/', { replace: true });
     }
-  }, [topId, navigate, location.pathname]);
+    // location.pathname intentionally excluded — only react to topId changes
+    // to avoid the open()→navigate()→open() feedback loop Chrome throttles.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [topId, navigate]);
 
-  const [bootSeen, setBootSeen] = usePersistedState<boolean>('pslg.boot-seen', false);
-  const [showBoot, setShowBoot] = useState(!bootSeen);
+  // Boot intro plays on every load (no localStorage gating).
+  const [showBoot, setShowBoot] = useState(true);
 
   const isMobile = useIsMobile();
   if (isMobile) {
@@ -56,7 +59,7 @@ export const Shell = ({ children }: { children: (id: WindowId) => React.ReactNod
   return (
     <>
       {showBoot && (
-        <BootSequence onDone={() => { setShowBoot(false); setBootSeen(true); }} />
+        <BootSequence onDone={() => setShowBoot(false)} />
       )}
       <StatusStrip language={language} onToggleLanguage={() => setLanguage(language === 'es' ? 'en' : 'es')} />
       <Desktop
