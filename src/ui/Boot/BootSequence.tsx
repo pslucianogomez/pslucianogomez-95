@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import { useEffect, useRef, useState } from 'react';
 import { bootLines, TOTAL_BOOT_MS } from './bootLines';
 
@@ -13,7 +13,7 @@ const Root = styled.div<{ $exiting: boolean }>`
   font-size: ${({ theme }) => theme.fontSize.md};
   padding: ${({ theme }) => theme.space['6']}px;
   z-index: 9999;
-  ${({ $exiting }) => $exiting && `animation: ${fadeOut} 200ms forwards;`}
+  ${({ $exiting }) => $exiting && css`animation: ${fadeOut} 200ms forwards;`}
 `;
 
 const Line = styled.div` line-height: 1.7; `;
