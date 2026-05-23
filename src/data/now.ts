@@ -21,8 +21,4 @@ export const now: NowRow[] = [
       { label: 'academic.oup.com',           href: 'https://academic.oup.com' },
     ],
   },
-  { label: 'LAST COMMIT',  value: { en: 'pslucianogomez.com.ar', es: 'pslucianogomez.com.ar' } },
-  { label: 'LISTENING TO', value: null },
-  { label: 'READING',      value: null },
-  { label: 'UPDATED',      value: { en: '2026-05-23', es: '2026-05-23' } },
 ];

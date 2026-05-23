@@ -31,7 +31,7 @@ const DEFAULTS: Record<WindowId, { position: { x: number; y: number }; size: { w
   experience:  { position: { x: 180, y: 110 }, size: { w: 560, h: 440 } },
   contact:     { position: { x: 220, y: 140 }, size: { w: 460, h: 480 } },
   stack:       { position: { x: 260, y: 170 }, size: { w: 420, h: 360 } },
-  now:         { position: { x: 300, y: 200 }, size: { w: 320, h: 340 } },
+  now:         { position: { x: 300, y: 200 }, size: { w: 420, h: 520 } },
   'not-found': { position: { x: 200, y: 200 }, size: { w: 360, h: 200 } },
 };
 
