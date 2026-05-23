@@ -1,6 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
-//import { ColumnDef, flexRender } from "@tanstack/react-table";
 import {
     Table,
     TableBody,
@@ -21,21 +20,22 @@ import {
 } from "react95";
 import { experiences } from "../../constants";
 import { useLanguage } from "../../contexts/LanguageContext";
+import { useWindows } from "../../contexts/WindowContext";
 
-const ExperienceCard = ({ exp }: { exp: any }) => (
+const ExperienceCard = ({ exp, onOpen, t }: { exp: any; onOpen: (id: string) => void; t: (key: string) => string }) => (
     <Frame
         variant='field'
         style={{
             padding: '1rem',
-                marginBottom: '1rem',
-                width: '100%',
-                maxWidth: '100%',
-                overflowX: 'hidden'
-            }}
-        >
-            <div style={{ marginBottom: '0.5rem', fontWeight: 'bold', wordBreak: 'break-word' }}>
-                {exp.title}
-            </div>
+            marginBottom: '1rem',
+            width: '100%',
+            maxWidth: '100%',
+            overflowX: 'hidden'
+        }}
+    >
+        <div style={{ marginBottom: '0.5rem', fontWeight: 'bold', wordBreak: 'break-word' }}>
+            {exp.title}
+        </div>
         <div style={{ marginBottom: '0.5rem', wordBreak: 'break-word' }}>
             <strong>Company:</strong> {exp.company}
         </div>
@@ -48,12 +48,12 @@ const ExperienceCard = ({ exp }: { exp: any }) => (
         <div style={{ marginBottom: '1rem', wordBreak: 'break-word' }}>
             <strong>Tech:</strong> {exp.techStack}
         </div>
-            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.5rem' }}>
-                <Button onClick={() => { window.location.href = `/experience/${exp.id}`; }}>
-                    {useLanguage().t('experience.open')}
-                </Button>
-                <Button disabled>{useLanguage().t('experience.share')}</Button>
-            </div>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.5rem' }}>
+            <Button onClick={(e) => { e.stopPropagation(); onOpen(exp.id.toString()); }}>
+                {t('experience.open')}
+            </Button>
+            <Button disabled>{t('experience.share')}</Button>
+        </div>
     </Frame>
 );
 
@@ -71,6 +71,7 @@ export const ExperienceList = () => {
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
     const [localSearch, setLocalSearch] = useState(searchParams.get('search') || '');
     const { t } = useLanguage();
+    const { openWindow } = useWindows();
 
     useEffect(() => {
         const handleResize = () => {
@@ -236,7 +237,7 @@ export const ExperienceList = () => {
                         ) : isMobile ? (
                             <div style={{ width: '100%' }}>
                                 {filteredExperiences.map((exp) => (
-                                    <ExperienceCard key={exp.id} exp={exp} />
+                                    <ExperienceCard key={exp.id} exp={exp} onOpen={openWindow} t={t} />
                                 ))}
                             </div>
                         ) : (
@@ -261,7 +262,7 @@ export const ExperienceList = () => {
                                             <TableDataCell>{exp.period }</TableDataCell>
                                             <TableDataCell>
                                                 <div style={{ display: 'flex', gap: '0.5rem' }}>
-                                                    <Button onClick={() => { window.location.href = `/experience/${exp.id}`; }}>
+                                                    <Button onClick={(e) => { e.stopPropagation(); openWindow(exp.id.toString()); }}>
                                                         {t('experience.open')}
                                                     </Button>
                                                     <Button disabled>{t('experience.share')}</Button>

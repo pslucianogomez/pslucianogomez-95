@@ -1,0 +1,7 @@
+# Robots.txt for pslucianogomez.com.ar
+User-agent: *
+Allow: /
+Disallow: /login
+
+# Sitemap location
+Sitemap: https://pslucianogomez.com.ar/sitemap.xml

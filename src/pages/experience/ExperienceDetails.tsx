@@ -111,33 +111,24 @@ export const ExperienceDetails = ({
 
             <div style={{
                 display: 'flex',
-                justifyContent: 'space-between',
+                justifyContent: 'flex-end',
                 alignContent: 'center',
                 alignItems: 'center',
                 padding: '10px',
+                gap: '0.5rem'
             }}>
-                <div style={{ fontWeight: 'bold' }}>
+                {prevId && (
                     <Button
                         size='md'
-                        onClick={() => window.location.href = '/experience'}
-                    >
-                        {t('experience.backToList')}
-                    </Button>
-                </div>
-                <div>
-                    {prevId && (
-                        <Button
-                            size='md'
-                            onClick={() => window.location.href = `/experience/${prevId}`}
-                        >{t('experience.prev')}</Button>
-                    )}
-                    {nextId && (
-                        <Button
-                            size='md'
-                            onClick={() => window.location.href = `/experience/${nextId}`}
-                        >{t('experience.next')}</Button>
-                    )}
-                </div>
+                        onClick={() => window.location.href = `/experience/${prevId}`}
+                    >{t('experience.prev')}</Button>
+                )}
+                {nextId && (
+                    <Button
+                        size='md'
+                        onClick={() => window.location.href = `/experience/${nextId}`}
+                    >{t('experience.next')}</Button>
+                )}
             </div>
             </Frame>
         </Window>

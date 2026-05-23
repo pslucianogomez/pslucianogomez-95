@@ -10,7 +10,6 @@ import {
     GroupBox,
     ScrollView,
 } from 'react95';
-import emailjs from '@emailjs/browser';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 export const ContactPage = () => {
@@ -44,56 +43,46 @@ export const ContactPage = () => {
         }));
     };
 
+    const validateEmail = (email: string): boolean => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        
-        // Validación básica
+
+        // Validación de campos requeridos
         if (!formData.name || !formData.email || !formData.message) {
             alert(t('contact.requiredFields'));
+            return;
+        }
+
+        // Validación de formato de email
+        if (!validateEmail(formData.email)) {
+            alert(t('contact.invalidEmail'));
             return;
         }
 
         setIsSubmitting(true);
         setSubmitStatus('idle');
 
-        try {
-            // Configuración de EmailJS - El usuario necesitará configurar estos valores
-            await emailjs.send(
-                'YOUR_SERVICE_ID',  // Reemplazar con tu Service ID
-                'YOUR_TEMPLATE_ID', // Reemplazar con tu Template ID
-                {
-                    from_name: formData.name,
-                    from_email: formData.email,
-                    subject: formData.subject || 'Mensaje desde el formulario de contacto',
-                    message: formData.message,
-                    to_email: 'tu-email@ejemplo.com' // Tu correo donde recibirás los mensajes
-                },
-                'YOUR_PUBLIC_KEY'   // Reemplazar con tu Public Key
-            );
+        // Simular envío de email (delay de 1.5 segundos)
+        await new Promise(resolve => setTimeout(resolve, 1500));
 
-            setSubmitStatus('success');
-            setFormData({
-                name: '',
-                email: '',
-                subject: '',
-                message: ''
-            });
-            
-            // Limpiar el mensaje de éxito después de 5 segundos
-            setTimeout(() => {
-                setSubmitStatus('idle');
-            }, 5000);
-        } catch (error) {
-            console.error('Error al enviar el correo:', error);
-            setSubmitStatus('error');
-            
-            // Limpiar el mensaje de error después de 5 segundos
-            setTimeout(() => {
-                setSubmitStatus('idle');
-            }, 5000);
-        } finally {
-            setIsSubmitting(false);
-        }
+        setSubmitStatus('success');
+        setFormData({
+            name: '',
+            email: '',
+            subject: '',
+            message: ''
+        });
+
+        // Limpiar el mensaje de éxito después de 5 segundos
+        setTimeout(() => {
+            setSubmitStatus('idle');
+        }, 5000);
+
+        setIsSubmitting(false);
     };
 
     const renderFormContent = () => (
@@ -289,10 +278,9 @@ export const ContactPage = () => {
             overflow: 'hidden',
             display: 'flex',
             flexDirection: 'column',
-            width: '100%',
-            maxWidth: isMobile ? '100%' : '800px'
+            width: isMobile ? '100%' : '1000px'
         }}>
-            <Window style={{ 
+            <Window style={{
                 width: '100%',
                 height: isMobile ? '100%' : 'auto',
                 display: 'flex',
