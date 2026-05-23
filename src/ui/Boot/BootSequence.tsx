@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { bootLines, TOTAL_BOOT_MS } from './bootLines';
 
 const fadeOut = keyframes`from { opacity: 1 } to { opacity: 0 }`;
@@ -37,25 +37,27 @@ const Skip = styled.button`
 export const BootSequence = ({ onDone }: { onDone: () => void }) => {
   const [visibleCount, setVisibleCount] = useState(0);
   const [exiting, setExiting] = useState(false);
+  const onDoneRef = useRef(onDone);
+  onDoneRef.current = onDone;
 
   useEffect(() => {
     const timers = bootLines.map((line, i) =>
       setTimeout(() => setVisibleCount(i + 1), line.delayMs));
     const endTimer = setTimeout(() => setExiting(true), TOTAL_BOOT_MS - 200);
-    const doneTimer = setTimeout(onDone, TOTAL_BOOT_MS);
+    const doneTimer = setTimeout(() => onDoneRef.current(), TOTAL_BOOT_MS);
     return () => {
       timers.forEach(clearTimeout);
       clearTimeout(endTimer);
       clearTimeout(doneTimer);
     };
-  }, [onDone]);
+  }, []);
 
   return (
     <Root $exiting={exiting}>
       {bootLines.slice(0, visibleCount).map((l, i) => (
         <Line key={i}>{l.text}{i === visibleCount - 1 && <Cursor>_</Cursor>}</Line>
       ))}
-      <Skip onClick={onDone}>skip</Skip>
+      <Skip onClick={() => onDoneRef.current()}>skip</Skip>
     </Root>
   );
 };
