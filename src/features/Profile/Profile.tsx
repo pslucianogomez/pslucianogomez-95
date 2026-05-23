@@ -34,6 +34,23 @@ const Meta = styled.div`
   margin-top: 2px;
 `;
 
+const Credential = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: ${({ theme }) => theme.space['3']}px;
+  font-family: ${({ theme }) => theme.fontFamily.mono};
+  font-size: ${({ theme }) => theme.fontSize.xs};
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  line-height: 1.3;
+  padding: ${({ theme }) => theme.space['1']}px ${({ theme }) => theme.space['2']}px;
+  border: ${({ theme }) => theme.border.thin};
+  box-shadow: ${({ theme }) => theme.shadow.btc};
+  background: ${({ theme }) => theme.colors.inkPaper};
+`;
+
 const Bio = styled.p`
   font-family: ${({ theme }) => theme.fontFamily.body};
   font-size: ${({ theme }) => theme.fontSize.md};
@@ -103,6 +120,7 @@ export const Profile = () => {
           <Meta>{cosmetic.pseudoAddress} · {profile.city}</Meta>
         </div>
       </Top>
+      <Credential>⬢ {profile.credential[language]}</Credential>
       <Bio>{profile.bio[language]}</Bio>
       <Actions>
         <Button $variant="primary" onClick={() => open('contact', '/contact')}>

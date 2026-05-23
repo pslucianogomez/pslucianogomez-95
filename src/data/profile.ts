@@ -1,6 +1,7 @@
 export interface ProfileData {
   name: string;
   city: string;
+  credential: { en: string; es: string };
   bio: { en: string; es: string };
   intro: { en: string; es: string };
   career: { en: string; es: string };
@@ -11,6 +12,10 @@ export interface ProfileData {
 export const profile: ProfileData = {
   name: 'Pedro S. Luciano Gomez',
   city: 'CÓRDOBA, AR',
+  credential: {
+    en: 'Microsoft AI & ML Engineering Professional Certificate',
+    es: 'Certificado Profesional de Microsoft AI & ML Engineering',
+  },
   bio: {
     en: 'Senior .NET Full Stack Developer with 15+ years of experience in desktop and web applications. Passionate about continuous learning, teamwork, and building efficient, scalable solutions.',
     es: 'Desarrollador Senior .NET Full Stack con más de 15 años de experiencia en aplicaciones de escritorio y web. Apasionado por el aprendizaje continuo, el trabajo en equipo y la creación de soluciones eficientes y escalables.',
