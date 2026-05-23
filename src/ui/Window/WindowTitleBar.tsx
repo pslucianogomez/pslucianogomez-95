@@ -14,11 +14,11 @@ const Bar = styled.div<{ $active: boolean }>`
   letter-spacing: 1.5px;
   text-transform: uppercase;
   user-select: none;
-  cursor: grab;
-  &:active { cursor: grabbing; }
 `;
 
-const Title = styled.span`
+// Only the title area is the drag handle. Controls (—, ✕) live in a
+// separate region so their clicks aren't swallowed by setPointerCapture.
+const DragHandle = styled.span`
   display: inline-flex;
   align-items: center;
   gap: ${({ theme }) => theme.space['2']}px;
@@ -26,11 +26,16 @@ const Title = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  cursor: grab;
+  flex: 1;
+  min-width: 0;
+  &:active { cursor: grabbing; }
 `;
 
 const Controls = styled.span`
   display: inline-flex;
   gap: ${({ theme }) => theme.space['2']}px;
+  flex-shrink: 0;
 `;
 
 const CtrlBtn = styled.button<{ $accent?: boolean }>`
@@ -39,8 +44,9 @@ const CtrlBtn = styled.button<{ $accent?: boolean }>`
   color: ${({ theme, $accent }) => $accent ? theme.colors.btc : 'inherit'};
   font-family: inherit;
   font-size: inherit;
-  cursor: crosshair;
+  cursor: pointer;
   padding: 0 ${({ theme }) => theme.space['1']}px;
+  &:hover { color: ${({ theme }) => theme.colors.btc}; }
 `;
 
 export interface WindowTitleBarProps {
@@ -53,8 +59,10 @@ export interface WindowTitleBarProps {
 }
 
 export const WindowTitleBar = ({ title, icon, active, onClose, onMinimize, onPointerDown }: WindowTitleBarProps) => (
-  <Bar $active={active} onPointerDown={onPointerDown}>
-    <Title>{icon}<span>▮ {title}</span></Title>
+  <Bar $active={active}>
+    <DragHandle onPointerDown={onPointerDown}>
+      {icon}<span>▮ {title}</span>
+    </DragHandle>
     <Controls>
       {onMinimize && <CtrlBtn onClick={onMinimize} aria-label="minimize">—</CtrlBtn>}
       <CtrlBtn $accent onClick={onClose} aria-label="close">✕</CtrlBtn>
