@@ -20,6 +20,8 @@ const translations: Record<Language, Record<string, string>> = {
 
         'profile.hireMe': 'Hire Me →',
         'profile.downloadCv': 'Download CV',
+        'profile.about': 'About me',
+        'profile.career': 'Career',
 
         'experience.empty': 'No experiences yet.',
         'experience.open': 'open',
@@ -46,6 +48,8 @@ const translations: Record<Language, Record<string, string>> = {
 
         'profile.hireMe': 'Contratame →',
         'profile.downloadCv': 'Descargar CV',
+        'profile.about': 'Sobre mí',
+        'profile.career': 'Carrera',
 
         'experience.empty': 'Aún no hay experiencias cargadas.',
         'experience.open': 'abrir',

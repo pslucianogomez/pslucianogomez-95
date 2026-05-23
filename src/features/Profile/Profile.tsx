@@ -68,6 +68,29 @@ const SocialLink = styled.a`
   cursor: crosshair;
 `;
 
+const Section = styled.section`
+  margin-top: ${({ theme }) => theme.space['5']}px;
+`;
+
+const SectionHeading = styled.h2`
+  font-family: ${({ theme }) => theme.fontFamily.mono};
+  font-size: ${({ theme }) => theme.fontSize.xs};
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.muted};
+  border-bottom: 1px dashed ${({ theme }) => theme.colors.ink};
+  padding-bottom: ${({ theme }) => theme.space['1']}px;
+  margin: 0 0 ${({ theme }) => theme.space['2']}px 0;
+  font-weight: 700;
+`;
+
+const Prose = styled.div`
+  font-family: ${({ theme }) => theme.fontFamily.body};
+  font-size: ${({ theme }) => theme.fontSize.md};
+  line-height: 1.55;
+  white-space: pre-line;
+`;
+
 export const Profile = () => {
   const { t, language } = useLanguage();
   const { open } = useWindows();
@@ -96,6 +119,14 @@ export const Profile = () => {
           <SocialLink key={s.label} href={s.href} target="_blank" rel="noopener noreferrer">{s.label}</SocialLink>
         ))}
       </Socials>
+      <Section>
+        <SectionHeading>{t('profile.about')}</SectionHeading>
+        <Prose>{profile.intro[language]}</Prose>
+      </Section>
+      <Section>
+        <SectionHeading>{t('profile.career')}</SectionHeading>
+        <Prose>{profile.career[language]}</Prose>
+      </Section>
     </>
   );
 };

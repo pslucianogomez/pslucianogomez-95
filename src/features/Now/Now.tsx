@@ -23,6 +23,8 @@ const Value = styled.span`
   font-family: ${({ theme }) => theme.fontFamily.display};
   font-weight: 500;
   font-size: ${({ theme }) => theme.fontSize.md};
+  min-width: 0;
+  overflow-wrap: anywhere;
 `;
 
 export const Now = () => {
