@@ -1007,7 +1007,7 @@ export interface StatusStripProps {
 
 export const StatusStrip = ({ language, onToggleLanguage }: StatusStripProps) => (
   <Strip>
-    <Left>PSLG · {cosmetic.appVersion}</Left>
+    <Left>pslucianogomez · {cosmetic.appVersion}</Left>
     <Right>
       <Status>online</Status>
       <HexAddress />
@@ -1564,7 +1564,7 @@ export interface NowRow {
 }
 
 export const now: NowRow[] = [
-  { label: 'STATUS',       value: { en: '● OPEN_TO_WORK', es: '● ABIERTO_A_OFERTAS' } },
+  { label: 'STATUS',       value: { en: '● OPEN_TO_WORK', es: '● FULL_TIME_CONTRACTOR/CONSULTOR' } },
   { label: 'LOCATION',     value: { en: 'Córdoba, AR · GMT-3', es: 'Córdoba, AR · GMT-3' } },
   { label: 'CURRENTLY',    value: { en: 'Redesigning this site (meta)', es: 'Rediseñando este sitio (meta)' } },
   { label: 'LAST COMMIT',  value: { en: 'pslucianogomez.com.ar', es: 'pslucianogomez.com.ar' } },
@@ -1903,7 +1903,7 @@ Open: the URL Vite prints (usually `http://localhost:5173/`).
 
 **Manual checks (FIRST visit — clear localStorage if needed):**
 - Boot sequence runs: ~7 lines, ends in fade ~2.5s. SKIP button works.
-- After boot: cream background with dots, top status strip (`PSLG · v3.0 · ● online · 0x4F…A91C · ES / en`), 5 desktop icons in left column, bottom black taskbar with `⬢ Start`, block number, clock.
+- After boot: cream background with dots, top status strip (`pslucianogomez · v3.0 · ● online · 0x4F…A91C · ES / en`), 5 desktop icons in left column, bottom black taskbar with `⬢ Start`, block number, clock.
 - Double-click "Profile" icon → window opens at ~(140, 80) with the stub text. URL updates to `/profile`. Taskbar shows the open window.
 - Drag the window's title bar — it moves, shadow turns btc-orange while dragging.
 - Click another icon (Experience) → second window opens, becomes active (focused), URL updates to `/experience`.

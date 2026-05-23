@@ -246,7 +246,7 @@ Cursor blink via `@keyframes`. On completion, 200ms fade to desktop. **No boot o
 ### 5.2 Desktop
 
 - **Background:** `paper` with dot grid (1px `ink` dots every 12px, 35% opacity).
-- **Status strip (top, 34px):** `PSLG · v3.0` left; right cluster: `● online` (`ok` dot), pseudo-address `0x4F…A91C` (hand-chosen static string defined once in `theme/tokens.ts`), language toggle `ES / en` (active locale uppercase, inactive lowercase — clicking swaps).
+- **Status strip (top, 34px):** `pslucianogomez · v3.0` left; right cluster: `● online` (`ok` dot), pseudo-address `0x4F…A91C` (hand-chosen static string defined once in `theme/tokens.ts`), language toggle `ES / en` (active locale uppercase, inactive lowercase — clicking swaps).
 - **Desktop icons:** left column of 5 (`Profile`, `Experience`, `Stack`, `Now`, `Contact`). Each: 48px square, `border 2px ink`, `shadow 3px 3px 0 ink`, glyph centered, uppercase label below. Double-click opens. Single-click highlights.
 - **Canvas:** windows render with `WindowsContext` z-index. Drag clamps to viewport.
 

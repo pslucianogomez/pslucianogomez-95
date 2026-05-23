@@ -43,7 +43,7 @@ export interface StatusStripProps {
 
 export const StatusStrip = ({ language, onToggleLanguage }: StatusStripProps) => (
   <Strip>
-    <Left>PSLG · {cosmetic.appVersion}</Left>
+    <Left>pslucianogomez · {cosmetic.appVersion}</Left>
     <Right>
       <Status>online</Status>
       <HexAddress />
