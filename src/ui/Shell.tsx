@@ -48,9 +48,18 @@ export const Shell = ({ children }: { children: (id: WindowId) => React.ReactNod
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [topId, navigate]);
 
-  // Boot intro plays on every load (no localStorage gating), desktop AND mobile.
+  // Boot intro plays on every load (desktop AND mobile). First visit shows the
+  // full sequence; once seen (localStorage flag) returning visits get a short,
+  // small-type 4-line version.
   const [showBoot, setShowBoot] = useState(true);
-  const boot = showBoot && <BootSequence onDone={() => setShowBoot(false)} />;
+  const [bootCompact] = useState(() => {
+    try { return localStorage.getItem('pslg.boot-seen') === 'true'; } catch { return false; }
+  });
+  const dismissBoot = () => {
+    setShowBoot(false);
+    try { localStorage.setItem('pslg.boot-seen', 'true'); } catch { /* ignore quota */ }
+  };
+  const boot = showBoot && <BootSequence compact={bootCompact} onDone={dismissBoot} />;
 
   const isMobile = useIsMobile();
   if (isMobile) {

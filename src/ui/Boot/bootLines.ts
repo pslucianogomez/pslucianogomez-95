@@ -34,3 +34,8 @@ export const bootLines: BootLine[] = [
 ];
 
 export const TOTAL_BOOT_MS = 4800;
+
+// Returning visitors get an abbreviated boot: the first few lines only,
+// smaller type, quick fade.
+export const COMPACT_LINE_COUNT = 4;
+export const COMPACT_BOOT_MS = 1200;
