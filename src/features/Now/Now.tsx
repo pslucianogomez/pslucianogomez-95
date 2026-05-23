@@ -78,10 +78,35 @@ const Gallery = styled.div`
   gap: ${({ theme }) => theme.space['3']}px;
 `;
 
+// Dark terminal palette for the ambient pixel scenes (honeytree-style:
+// chunky pixel art over a dark background + a status line). Local colours,
+// not the site's ink/paper tokens.
+const TERM_BG = '#161616';
+const TERM_DIM = '#b3ad9f';
+const TERM_TEXT = '#f0ece2';
+
+const PALETTE: Record<string, string> = {
+  G: '#7ec850', // bright green
+  g: '#4f8a3a', // dark green
+  P: '#e89ab0', // blossom pink
+  W: '#8a6a3a', // trunk/wood
+  A: '#b5763c', // gourd brown
+  a: '#d49a5c', // light gourd
+  S: '#c2c2cc', // steel / grill
+  O: '#f7931a', // fire orange
+  R: '#c4452a', // ember red
+  Y: '#f0c850', // sun / yellow
+  M: '#9a4a3a', // meat
+  C: '#f5f1e8', // card cream
+  B: '#5a3e26', // wood counter
+  k: '#2a2a22', // shadow ground
+};
+
 const GameWindow = styled.div`
   border: ${({ theme }) => theme.border.thick};
   box-shadow: ${({ theme }) => theme.shadow.base};
-  background: ${({ theme }) => theme.colors.ink};
+  background: ${TERM_BG};
+  overflow: hidden;
 `;
 
 const GameBar = styled.div`
@@ -97,47 +122,71 @@ const GameBar = styled.div`
   letter-spacing: 1px;
 `;
 
-const GameScreen = styled.pre`
-  margin: 0;
-  padding: ${({ theme }) => theme.space['3']}px;
-  background: ${({ theme }) => theme.colors.ink};
-  color: ${({ theme }) => theme.colors.paper};
-  font-family: ${({ theme }) => theme.fontFamily.mono};
-  font-size: 10px;
-  line-height: 1.5;
-  white-space: pre;
-  overflow-x: auto;
+const Scene = styled.div`
+  padding: ${({ theme }) => theme.space['2']}px;
+  background: ${TERM_BG};
+  & > svg { display: block; width: 100%; height: auto; }
 `;
 
 const GameShot = styled.img`
   display: block;
   width: 100%;
-  background: ${({ theme }) => theme.colors.ink};
+  background: ${TERM_BG};
 `;
 
-const GameFoot = styled.div`
+const Status = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: ${({ theme }) => theme.space['2']}px;
-  padding: ${({ theme }) => theme.space['2']}px;
-  background: ${({ theme }) => theme.colors.inkPaper};
-  border-top: ${({ theme }) => theme.border.thin};
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 6px ${({ theme }) => theme.space['3']}px 8px;
+  background: ${TERM_BG};
   font-family: ${({ theme }) => theme.fontFamily.mono};
-  font-size: ${({ theme }) => theme.fontSize.xs};
+  font-size: 11px;
+  color: ${TERM_DIM};
 `;
 
-const SoonBadge = styled.span`
-  flex-shrink: 0;
+const GameName = styled.span`
+  color: ${TERM_TEXT};
   font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  padding: 2px 6px;
-  border: ${({ theme }) => theme.border.thin};
-  box-shadow: 2px 2px 0 ${({ theme }) => theme.colors.btc};
-  background: ${({ theme }) => theme.colors.btc};
-  color: ${({ theme }) => theme.colors.ink};
 `;
+
+const Sep = styled.span` opacity: 0.45; `;
+
+const Bar = styled.span`
+  display: inline-block;
+  width: 46px;
+  height: 8px;
+  background: #333;
+  border: 1px solid #4a4a4a;
+`;
+
+const BarFill = styled.span<{ $p: number }>`
+  display: block;
+  height: 100%;
+  width: ${({ $p }) => Math.round($p * 100)}%;
+  background: ${PALETTE.G};
+`;
+
+const PixelScene = ({ rows }: { rows: string[] }) => {
+  const h = rows.length;
+  const w = Math.max(...rows.map((r) => r.length));
+  return (
+    <svg
+      viewBox={`0 0 ${w} ${h}`}
+      width="100%"
+      preserveAspectRatio="xMidYMid meet"
+      shapeRendering="crispEdges"
+    >
+      {rows.flatMap((row, y) =>
+        row.split('').map((ch, x) => {
+          const fill = PALETTE[ch];
+          return fill ? <rect key={`${x}-${y}`} x={x} y={y} width={1} height={1} fill={fill} /> : null;
+        }),
+      )}
+    </svg>
+  );
+};
 
 export const Now = () => {
   const { t, language } = useLanguage();
@@ -173,11 +222,14 @@ export const Now = () => {
               </GameBar>
               {g.image
                 ? <GameShot src={g.image} alt={g.exe} />
-                : <GameScreen>{g.screen}</GameScreen>}
-              <GameFoot>
-                <span>{g.tagline[language]}</span>
-                <SoonBadge>{t('now.soon')}</SoonBadge>
-              </GameFoot>
+                : <Scene><PixelScene rows={g.pixels} /></Scene>}
+              <Status>
+                <GameName>{g.name}</GameName>
+                <Sep>·</Sep><span>{g.count[language]}</span>
+                <Sep>·</Sep><span>{g.time[language]}</span>
+                <Sep>·</Sep><Bar><BarFill $p={g.progress} /></Bar>
+                <span>next: {g.next}</span>
+              </Status>
             </GameWindow>
           ))}
         </Gallery>
