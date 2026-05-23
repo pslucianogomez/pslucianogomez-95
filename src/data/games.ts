@@ -6,15 +6,50 @@
 // '.' (or any unmapped char) = transparent.
 
 export interface ComingSoonGame {
-  exe: string;                         // CMD window title
-  name: string;                        // status-line name (amber)
-  count: { en: string; es: string };   // "3 cebadas"
-  time: { en: string; es: string };    // "1 día"
-  next: string;                        // upcoming unlock
-  progress: number;                    // 0..1 status bar fill
+  exe: string;                          // CMD window title
+  name: string;                         // status-line name
+  count: { en: string; es: string };    // "3 cebadas"
+  time: { en: string; es: string };     // "1 día"
+  next: string;                         // upcoming unlock
+  progress: number;                     // 0..1 status bar fill
   pixels: string[];
-  image?: string;                      // optional real screenshot (overrides pixels)
+  image?: string;                       // optional real screenshot (overrides pixels)
 }
+
+const SCENE_W = 26;
+const padRow = (s: string) => (s + '.'.repeat(SCENE_W)).slice(0, SCENE_W);
+
+// --- MATE scene: Argentine flag (celeste/white/celeste + sun) beside a
+//     wooden gourd with a silver rim, green yerba and an angled bombilla. ---
+const flag = [
+  '...........',
+  'LLLLLLLLLLL',
+  'LLLLLLLLLLL',
+  'wwwwwwwwwww',
+  'wwwwwYwwwww',
+  'wwwwwwwwwww',
+  'LLLLLLLLLLL',
+  'LLLLLLLLLLL',
+  '...........',
+  '...........',
+];
+const mateGourd = [
+  '.........',
+  '......S..',
+  '.....S...',
+  '....SS...',
+  '.SSSSSSS.',
+  '.SGGGGGS.',
+  '.AAAAAAA.',
+  '.AAAAAAA.',
+  '..AAAAA..',
+  '...aSa...',
+];
+const mateScene = [
+  ...flag.map((f, i) => padRow(`${f}...${mateGourd[i]}`)),
+  'B'.repeat(SCENE_W),
+  'k'.repeat(SCENE_W),
+];
 
 export const games: ComingSoonGame[] = [
   {
@@ -24,19 +59,7 @@ export const games: ComingSoonGame[] = [
     time: { en: '1 day', es: '1 día' },
     next: 'tereré',
     progress: 0.4,
-    pixels: [
-      '..........................',
-      '....GG.......GG......GG....',
-      '...GGGG.....GGGG....GGGG...',
-      '...GAAGS....GAAGS...GAAGS..',
-      '...GAAG.....GAAG....GAAG...',
-      '....AA.......AA......AA....',
-      '....AA.......AA......AA....',
-      '....aa.......aa......aa....',
-      'BBBBBBBBBBBBBBBBBBBBBBBBBBB',
-      'BBBBBBBBBBBBBBBBBBBBBBBBBBB',
-      'kkkkkkkkkkkkkkkkkkkkkkkkkkk',
-    ],
+    pixels: mateScene,
   },
   {
     exe: 'GAUCHO.EXE',

@@ -100,6 +100,8 @@ const PALETTE: Record<string, string> = {
   C: '#f5f1e8', // card cream
   B: '#5a3e26', // wood counter
   k: '#2a2a22', // shadow ground
+  L: '#74acdf', // celeste (Argentine flag)
+  w: '#eef2f5', // flag white
 };
 
 const GameWindow = styled.div`
