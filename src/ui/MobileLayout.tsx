@@ -3,6 +3,7 @@ import { useState, type ReactNode } from 'react';
 import { Panel } from './Panel';
 import { Glyph, type GlyphName } from './Glyph';
 import { StatusStrip } from './Desktop/StatusStrip';
+import { ErrorBoundary } from './ErrorBoundary';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { WindowId } from '../contexts/WindowsContext';
 
@@ -74,7 +75,7 @@ export const MobileLayout = ({ render }: { render: (id: WindowId) => ReactNode }
       <StatusStrip language={language} onToggleLanguage={() => setLanguage(language === 'es' ? 'en' : 'es')} />
       <Screen key={active}>
         <SectionTitle>{t(activeMeta.tKey)}</SectionTitle>
-        <Panel>{render(active)}</Panel>
+        <Panel><ErrorBoundary>{render(active)}</ErrorBoundary></Panel>
       </Screen>
       <BottomNav>
         {ORDER.map((o) => (

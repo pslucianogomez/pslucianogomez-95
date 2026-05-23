@@ -7,6 +7,7 @@ import { Glyph, type GlyphName } from './Glyph';
 import { useWindows, type WindowId } from '../contexts/WindowsContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { BootSequence } from './Boot';
+import { ErrorBoundary } from './ErrorBoundary';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { MobileLayout } from './MobileLayout';
 
@@ -111,7 +112,7 @@ export const Shell = ({ children }: { children: (id: WindowId) => React.ReactNod
               onPositionChange={(p) => updatePosition(w.id, p)}
               onSizeChange={(s) => updateSize(w.id, s)}
             >
-              {children(w.id)}
+              <ErrorBoundary>{children(w.id)}</ErrorBoundary>
             </Window>
           );
         })}

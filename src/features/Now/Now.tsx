@@ -208,7 +208,7 @@ export const Now = () => {
                 ))}
               </Items>
             ) : (
-              <Value $truncate={r.truncate} title={r.value![language]}>{r.value![language]}</Value>
+              <Value $truncate={r.truncate} title={r.value?.[language] ?? ''}>{r.value?.[language] ?? ''}</Value>
             )}
           </Row>
         ))}
@@ -227,8 +227,8 @@ export const Now = () => {
                 : <Scene><PixelScene rows={g.pixels} /></Scene>}
               <Status>
                 <GameName>{g.name}</GameName>
-                <Sep>·</Sep><span>{g.count[language]}</span>
-                <Sep>·</Sep><span>{g.time[language]}</span>
+                <Sep>·</Sep><span>{g.count?.[language] ?? ''}</span>
+                <Sep>·</Sep><span>{g.time?.[language] ?? ''}</span>
                 <Sep>·</Sep><Bar><BarFill $p={g.progress} /></Bar>
                 <span>next: {g.next}</span>
               </Status>
