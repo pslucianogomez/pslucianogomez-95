@@ -18,6 +18,7 @@ interface WindowsContextValue {
   focus: (id: WindowId) => void;
   toggleMinimize: (id: WindowId) => void;
   updatePosition: (id: WindowId, position: { x: number; y: number }) => void;
+  updateSize: (id: WindowId, size: { w: number; h: number }) => void;
   topId: WindowId | null;
 }
 
@@ -79,6 +80,10 @@ export const WindowsProvider = ({ children }: { children: ReactNode }) => {
     setWindows((prev) => prev.map((w) => (w.id === id ? { ...w, position } : w)));
   }, []);
 
+  const updateSize = useCallback((id: WindowId, size: { w: number; h: number }) => {
+    setWindows((prev) => prev.map((w) => (w.id === id ? { ...w, size } : w)));
+  }, []);
+
   const topId = useMemo<WindowId | null>(() => {
     const visible = windows.filter((w) => !w.minimized);
     if (visible.length === 0) return null;
@@ -86,8 +91,8 @@ export const WindowsProvider = ({ children }: { children: ReactNode }) => {
   }, [windows]);
 
   const value = useMemo<WindowsContextValue>(() => ({
-    windows, open, close, focus, toggleMinimize, updatePosition, topId,
-  }), [windows, open, close, focus, toggleMinimize, updatePosition, topId]);
+    windows, open, close, focus, toggleMinimize, updatePosition, updateSize, topId,
+  }), [windows, open, close, focus, toggleMinimize, updatePosition, updateSize, topId]);
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 };

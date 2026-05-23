@@ -21,7 +21,7 @@ const ICON_MAP: Array<{ id: WindowId; route: string; glyph: GlyphName; tKey: str
 export const Shell = ({ children }: { children: (id: WindowId) => React.ReactNode }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { windows, open, close, focus, toggleMinimize, updatePosition, topId } = useWindows();
+  const { windows, open, close, focus, toggleMinimize, updatePosition, updateSize, topId } = useWindows();
   const { t, language, setLanguage } = useLanguage();
 
   const [highlighted, setHighlighted] = useState<WindowId | null>(null);
@@ -89,6 +89,7 @@ export const Shell = ({ children }: { children: (id: WindowId) => React.ReactNod
               onMinimize={() => toggleMinimize(w.id)}
               onFocus={() => focus(w.id)}
               onPositionChange={(p) => updatePosition(w.id, p)}
+              onSizeChange={(s) => updateSize(w.id, s)}
             >
               {children(w.id)}
             </Window>
