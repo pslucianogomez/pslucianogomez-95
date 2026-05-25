@@ -20,13 +20,9 @@ export const now: NowRow[] = [
       {
         label: 'farmaciasmartinez.com.ar',
         href: 'https://farmaciasmartinez.com.ar',
-        note: { en: 'multi-branch order system · 6 stores · .NET/Azure', es: 'sistema de pedidos multi-sucursal · 6 bocas · .NET/Azure' },
+        note: { en: 'multi-branch order system · 6 stores', es: 'sistema de pedidos multi-sucursal · 6 sucursales' },
       },
-      {
-        label: 'calculoselectricos.com.ar',
-        href: 'https://calculoselectricos.com.ar',
-        note: { en: 'SaaS for electricians · incubating', es: 'SaaS para electricistas · incubando' },
-      },
+      { label: 'calculoselectricos.com.ar', href: 'https://calculoselectricos.com.ar' },
       { label: 'academic.oup.com', href: 'https://academic.oup.com' },
     ],
   },
