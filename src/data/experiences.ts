@@ -106,6 +106,7 @@ Stack Microsoft con Entity Framework y SQL Server, Microservicios y Web APIs en 
     },
     role: '.NET Backend Developer Sr.',
     technologies: ['.NET Core', 'Entity Framework Core', 'SQL Server', 'React', 'Azure', 'Microservices', 'Web APIs', 'Visual Studio 2022', 'VS Code'],
+    tag: 'contract',
   },
   {
     id: '8',
@@ -141,6 +142,7 @@ Stack Microsoft con Entity Framework y SQL Server, Microservicios y Web APIs en 
     },
     role: '.NET Backend Developer Sr.',
     technologies: ['.NET Core', 'Entity Framework Core', 'SQL Server', 'Angular', 'Razor', 'Azure', 'Microservices', 'Web APIs', 'Visual Studio 2015', 'VS Code'],
+    tag: 'contract',
   },
   {
     id: '7',
@@ -176,6 +178,7 @@ Stack Microsoft con Entity Framework y SQL Server, Microservicios y Web APIs en 
     },
     role: '.NET Backend Developer Sr.',
     technologies: ['.NET Core', 'Entity Framework Core', 'SQL Server', 'Azure', 'Microservices', 'Web APIs', 'Visual Studio 2015', 'VS Code'],
+    tag: 'contract',
   },
   {
     id: '5',
