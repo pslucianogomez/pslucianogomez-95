@@ -22,6 +22,7 @@ export const now: NowRow[] = [
         label: 'calculoselectricos.com.ar',
         href: 'https://calculoselectricos.com.ar',
         role: { en: '(own product)', es: '(producto propio)' },
+        note: { en: 'SaaS for electricians · electrical calcs', es: 'SaaS para electricistas · cálculos eléctricos' },
       },
       {
         label: 'farmaciasmartinez.com.ar',
