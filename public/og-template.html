@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <!--
+    OG image template — 1200x630. NOT part of the app bundle.
+    To generate public/og-cover.png:
+      1) open this file in the browser (or `npm run dev` → /og-template.html)
+      2) screenshot the 1200x630 .og element (DevTools device 1200x630,
+         or a full-page capture of just the card)
+      3) save as public/og-cover.png
+      4) point og:image / twitter:image in index.html to /og-cover.png
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #d9d3c4; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+    .og {
+      width: 1200px; height: 630px;
+      background: #f5f1e8;
+      font-family: 'JetBrains Mono', monospace;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    /* dot grid */
+    .og::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(#0a0a0a 1.5px, transparent 1.5px);
+      background-size: 22px 22px; opacity: 0.10;
+    }
+    .bar {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; justify-content: space-between;
+      background: #0a0a0a; color: #fffdf7;
+      padding: 18px 36px;
+      font-size: 22px; letter-spacing: 2px; text-transform: uppercase;
+    }
+    .bar b { font-weight: 700; }
+    .body { position: relative; z-index: 1; flex: 1; padding: 64px 72px; display: flex; flex-direction: column; justify-content: center; }
+    .meta { font-size: 24px; letter-spacing: 2px; text-transform: uppercase; color: #6b6b6b; }
+    .meta .on { color: #2f8f4e; }
+    h1 {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 900;
+      font-size: 108px; line-height: 0.98; letter-spacing: -2px; color: #0a0a0a;
+      margin: 24px 0 28px;
+    }
+    .role { font-size: 30px; font-weight: 700; letter-spacing: 1px; color: #0a0a0a; }
+    .role .accent { color: #f7931a; }
+    .chips { margin-top: 40px; display: flex; gap: 16px; }
+    .chip {
+      font-size: 22px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      padding: 10px 20px; border: 3px solid #0a0a0a; background: #fffdf7;
+      box-shadow: 6px 6px 0 #0a0a0a;
+    }
+    .chip.btc { background: #f7931a; box-shadow: 6px 6px 0 #0a0a0a; }
+  </style>
+</head>
+<body>
+  <div class="og">
+    <div class="bar">
+      <span><b>▮ pslucianogomez</b> · v3.0</span>
+      <span><span class="on">●</span> ONLINE · 0x4F…A91C</span>
+    </div>
+    <div class="body">
+      <div class="meta"><span class="on">●</span> CÓRDOBA, AR · GMT-3</div>
+      <h1>Pedro S.<br />Luciano Gomez</h1>
+      <div class="role">Desarrollador Senior <span class="accent">.NET</span> Full Stack · 15 años</div>
+      <div class="chips">
+        <span class="chip btc">.NET</span>
+        <span class="chip">AZURE</span>
+        <span class="chip">BLAZOR</span>
+        <span class="chip">AI / ML</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
