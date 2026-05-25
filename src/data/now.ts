@@ -33,6 +33,7 @@ export const now: NowRow[] = [
         label: 'academic.oup.com',
         href: 'https://academic.oup.com',
         role: { en: '(contractor)', es: '(contractor)' },
+        note: { en: 'Oxford University Press · academic platform', es: 'Oxford University Press · plataforma académica' },
       },
     ],
   },
