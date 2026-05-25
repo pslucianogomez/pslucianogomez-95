@@ -11,6 +11,12 @@ const Row = styled.div`
   padding: ${({ theme }) => theme.space['1']}px 0;
   border-bottom: 1px dashed ${({ theme }) => theme.colors.ink};
   &:last-child { border-bottom: none; }
+
+  /* narrow screens: stack label over value instead of the 110px column */
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: ${({ theme }) => theme.space['1']}px;
+  }
 `;
 
 const RowLabel = styled.span`
@@ -88,8 +94,10 @@ const ComingSoonHeading = styled.h3`
 `;
 
 const Gallery = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  /* one column when narrow, flows into more columns as width grows so the
+     game windows don't blow up to full width on tablets */
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: ${({ theme }) => theme.space['3']}px;
 `;
 
