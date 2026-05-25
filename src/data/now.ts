@@ -1,8 +1,8 @@
 export interface NowLink {
   label: string;
   href: string;
-  note?: { en: string; es: string }; // short context shown under the link
-  featured?: boolean; // own product — rendered prominently, title typography
+  role?: { en: string; es: string }; // inline next to the link, same type, e.g. "(consultor)"
+  note?: { en: string; es: string }; // optional description shown dimmed under the link
 }
 
 export interface NowRow {
@@ -21,18 +21,18 @@ export const now: NowRow[] = [
       {
         label: 'calculoselectricos.com.ar',
         href: 'https://calculoselectricos.com.ar',
-        featured: true,
-        note: { en: '(own product) · Blazor', es: '(producto propio) · Blazor' },
+        role: { en: '(own product)', es: '(producto propio)' },
       },
       {
         label: 'farmaciasmartinez.com.ar',
         href: 'https://farmaciasmartinez.com.ar',
-        note: { en: 'multi-branch order system · 6 stores · (consultant)', es: 'sistema de pedidos multi-sucursal · 6 sucursales · (consultor)' },
+        role: { en: '(consultant)', es: '(consultor)' },
+        note: { en: 'multi-branch order system · 6 stores', es: 'sistema de pedidos multi-sucursal · 6 sucursales' },
       },
       {
         label: 'academic.oup.com',
         href: 'https://academic.oup.com',
-        note: { en: '(contractor)', es: '(contractor)' },
+        role: { en: '(contractor)', es: '(contractor)' },
       },
     ],
   },

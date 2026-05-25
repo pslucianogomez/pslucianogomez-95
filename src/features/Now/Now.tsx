@@ -56,30 +56,19 @@ const ItemLink = styled.a`
   &:hover { color: ${({ theme }) => theme.colors.btcDeep}; text-decoration: underline; }
 `;
 
+// Role label inline next to the link, same type as the link (mono, same size).
+const ItemRole = styled.span`
+  font-family: ${({ theme }) => theme.fontFamily.mono};
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  color: ${({ theme }) => theme.colors.ink};
+`;
+
 const ItemNote = styled.span`
   display: block;
   font-family: ${({ theme }) => theme.fontFamily.mono};
   font-size: ${({ theme }) => theme.fontSize.xs};
   color: ${({ theme }) => theme.colors.muted};
   padding-left: 14px;
-`;
-
-// Featured = own product. Rendered with the site's title typography
-// (display font, larger) so it stands out above the consulting work.
-const FeaturedLink = styled.a`
-  display: inline-block;
-  font-family: ${({ theme }) => theme.fontFamily.display};
-  font-size: ${({ theme }) => theme.fontSize.lg};
-  font-weight: 700;
-  letter-spacing: -0.2px;
-  color: ${({ theme }) => theme.colors.ink};
-  text-decoration: none;
-  overflow-wrap: anywhere;
-  &::before {
-    content: '▸ ';
-    color: ${({ theme }) => theme.colors.btc};
-  }
-  &:hover { color: ${({ theme }) => theme.colors.btcDeep}; text-decoration: underline; }
 `;
 
 const ComingSoon = styled.section`
@@ -229,11 +218,8 @@ export const Now = () => {
               <Items>
                 {r.items.map((it) => (
                   <li key={it.href}>
-                    {it.featured ? (
-                      <FeaturedLink href={it.href} target="_blank" rel="noopener noreferrer">{it.label}</FeaturedLink>
-                    ) : (
-                      <ItemLink href={it.href} target="_blank" rel="noopener noreferrer">{it.label}</ItemLink>
-                    )}
+                    <ItemLink href={it.href} target="_blank" rel="noopener noreferrer">{it.label}</ItemLink>
+                    {it.role && <ItemRole> {it.role[language]}</ItemRole>}
                     {it.note && <ItemNote>{it.note[language]}</ItemNote>}
                   </li>
                 ))}
