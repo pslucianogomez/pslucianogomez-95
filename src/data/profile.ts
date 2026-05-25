@@ -17,12 +17,12 @@ export const profile: ProfileData = {
     es: 'Certificado Profesional de Microsoft AI & ML Engineering',
   },
   bio: {
-    en: "15 years writing C#. Tired of building everyone else's roadmap — now I build my own, and for a few clients I actually choose, always mate in hand. Córdoba, GMT-3.",
-    es: '15 años escribiendo C#. Me cansé de construir el roadmap de otros — ahora construyo el mío y el de unos pocos clientes que elijo, siempre mate en mano. Córdoba, GMT-3.',
+    en: '15 years writing C#. Today I build my own products and choose who I build for, always mate in hand. Córdoba, GMT-3.',
+    es: '15 años escribiendo C#. Hoy construyo mis propios productos y elijo a quién le construyo, siempre mate en mano. Córdoba, GMT-3.',
   },
   intro: {
-    en: "I write code the way I drink mate: slowly, in rounds, and I'd rather share it with people I actually want to work with. After 15 years building software for everyone else, I'm betting the next decade on three things — my own products, AI integration, and clients who ship.",
-    es: 'Escribo código como tomo mate: despacio, en rondas, y prefiero compartirlo con gente con la que realmente quiero trabajar. Después de 15 años haciendo software para todos los demás, apuesto la próxima década a tres cosas: mis propios productos, integración de IA, y clientes que shippean.',
+    en: 'After 15 years developing at Argentine agencies and US enterprise, today I combine the two things I do best: solid .NET systems and, increasingly, AI integration. I build my own products and work with a select group of clients, putting the same care into every project.',
+    es: 'Después de 15 años desarrollando en agencias argentinas y enterprise de EEUU, hoy combino las dos cosas que mejor hago: sistemas .NET sólidos y, cada vez más, integración de IA. Construyo productos propios y trabajo con un grupo acotado de clientes, poniendo el mismo cuidado en cada proyecto.',
   },
   career: {
     en: 'Six years at US enterprise (LedgerPay · fintech, Recuro Health · telemedicine, ITA · recognition). Eight at Argentine agencies. Today: my own products + selected clients. Stack: .NET, Azure, Blazor, increasingly AI/ML. Industries: health, finance, retail, pharmacy.',

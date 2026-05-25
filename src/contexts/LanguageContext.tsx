@@ -21,7 +21,7 @@ const translations: Record<Language, Record<string, string>> = {
         'now.comingSoon': 'Incubating · CMD games',
         'now.soon': 'soon',
 
-        'profile.hireMe': 'Hire Me →',
+        'profile.hireMe': 'Get in touch →',
         'profile.downloadCv': 'Download CV',
         'profile.about': 'About me',
         'profile.career': 'Career',
@@ -52,7 +52,7 @@ const translations: Record<Language, Record<string, string>> = {
         'now.comingSoon': 'Incubando · juegos CMD',
         'now.soon': 'pronto',
 
-        'profile.hireMe': 'Contratame →',
+        'profile.hireMe': 'Contacto →',
         'profile.downloadCv': 'Descargar CV',
         'profile.about': 'Sobre mí',
         'profile.career': 'Carrera',
