@@ -15,10 +15,10 @@ export const stack: StackGroup[] = [
     category: 'LANGUAGES',
     items: [
       { name: 'C# / .NET',                level: 'advanced' },
-      { name: 'VB .NET',                  level: 'advanced' },
-      { name: 'JavaScript / jQuery',      level: 'advanced' },
+      { name: 'JavaScript',               level: 'advanced' },
       { name: 'TypeScript',               level: 'medium' },
       { name: 'React',                    level: 'advanced' },
+      { name: 'Blazor',                   level: 'advanced' },
       { name: 'Next.js',                  level: 'medium' },
       { name: 'Node.js',                  level: 'medium' },
       { name: 'HTML / CSS',               level: 'advanced' },
@@ -52,7 +52,7 @@ export const stack: StackGroup[] = [
   {
     category: 'DATABASES',
     items: [
-      { name: 'SQL Server (2005-2022)',   level: 'advanced' },
+      { name: 'SQL Server',               level: 'advanced' },
       { name: 'MySQL',                    level: 'advanced' },
       { name: 'PostgreSQL',               level: 'advanced' },
       { name: 'Cosmos DB',                level: 'advanced' },
@@ -100,6 +100,14 @@ export const stack: StackGroup[] = [
       { name: 'Kubernetes',               level: 'medium' },
       { name: 'Vite',                     level: 'medium' },
       { name: 'SonarQube',                level: 'low' },
+    ],
+  },
+  {
+    category: 'LEGACY / HERITAGE',
+    items: [
+      { name: 'VB .NET',                  level: 'advanced' },
+      { name: 'jQuery',                   level: 'advanced' },
+      { name: 'ASP.NET Web Forms',        level: 'advanced' },
     ],
   },
 ];

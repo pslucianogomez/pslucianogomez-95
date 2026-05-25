@@ -18,7 +18,7 @@ const translations: Record<Language, Record<string, string>> = {
         'icon.stack': 'Stack',
         'icon.now': 'Now',
 
-        'now.comingSoon': 'Coming soon · CMD games',
+        'now.comingSoon': 'Incubating · CMD games',
         'now.soon': 'soon',
 
         'profile.hireMe': 'Hire Me →',
@@ -49,7 +49,7 @@ const translations: Record<Language, Record<string, string>> = {
         'icon.stack': 'Stack',
         'icon.now': 'Now',
 
-        'now.comingSoon': 'Próximamente · juegos CMD',
+        'now.comingSoon': 'Incubando · juegos CMD',
         'now.soon': 'pronto',
 
         'profile.hireMe': 'Contratame →',

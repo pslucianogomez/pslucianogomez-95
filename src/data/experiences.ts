@@ -8,6 +8,7 @@ export interface Experience {
   abstract: { en: string; es: string };
   role: string;
   technologies: string[];
+  tag?: string; // e.g. 'contract' — clarifies parallel/overlapping roles
 }
 
 export const experiences: Experience[] = [
@@ -43,6 +44,7 @@ Las plataformas se construyeron sobre el stack Microsoft ASP.NET, utilizando Ent
     },
     role: '.NET Full Stack Developer Sr.',
     technologies: ['.NET Core', 'Entity Framework Core', 'SQL Server', 'Razor', 'Azure', 'Microservices', 'Web APIs', 'Dapper', 'Visual Studio 2019/2022'],
+    tag: 'contract',
   },
   {
     id: '10',
@@ -72,6 +74,7 @@ Construido sobre el ecosistema Microsoft, integrando Entity Framework y Web APIs
     },
     role: '.NET Full Stack Developer Sr.',
     technologies: ['.NET Core', 'Entity Framework Core', 'Cosmos DB', 'React', 'Azure', 'Microservices', 'Web APIs', 'Azure Hub', 'Visual Studio 2022', 'VS Code'],
+    tag: 'contract',
   },
   {
     id: '9',

@@ -56,6 +56,14 @@ const ItemLink = styled.a`
   &:hover { color: ${({ theme }) => theme.colors.btcDeep}; text-decoration: underline; }
 `;
 
+const ItemNote = styled.span`
+  display: block;
+  font-family: ${({ theme }) => theme.fontFamily.mono};
+  font-size: ${({ theme }) => theme.fontSize.xs};
+  color: ${({ theme }) => theme.colors.muted};
+  padding-left: 14px;
+`;
+
 const ComingSoon = styled.section`
   margin-top: ${({ theme }) => theme.space['5']}px;
 `;
@@ -204,6 +212,7 @@ export const Now = () => {
                 {r.items.map((it) => (
                   <li key={it.href}>
                     <ItemLink href={it.href} target="_blank" rel="noopener noreferrer">{it.label}</ItemLink>
+                    {it.note && <ItemNote>{it.note[language]}</ItemNote>}
                   </li>
                 ))}
               </Items>

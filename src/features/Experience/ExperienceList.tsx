@@ -12,6 +12,10 @@ const Item = styled.article<{ $expanded: boolean }>`
 `;
 
 const Period = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: ${({ theme }) => theme.space['2']}px;
   font-family: ${({ theme }) => theme.fontFamily.mono};
   font-size: ${({ theme }) => theme.fontSize.xs};
   letter-spacing: 1.5px;
@@ -19,6 +23,16 @@ const Period = styled.div`
   border-bottom: 1px dashed ${({ theme }) => theme.colors.ink};
   padding-bottom: ${({ theme }) => theme.space['1']}px;
   margin-bottom: ${({ theme }) => theme.space['2']}px;
+`;
+
+const Tag = styled.span`
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 1px 6px;
+  border: 1px solid ${({ theme }) => theme.colors.ink};
+  background: ${({ theme }) => theme.colors.btc};
+  color: ${({ theme }) => theme.colors.ink};
 `;
 
 const Header = styled.button`
@@ -83,7 +97,10 @@ const ExperienceCard = ({ exp, isOpen, onToggle, lang, openLabel, closeLabel }: 
   lang: 'en' | 'es'; openLabel: string; closeLabel: string;
 }) => (
   <Item $expanded={isOpen}>
-    <Period>{exp.period[lang]}</Period>
+    <Period>
+      <span>{exp.period[lang]}</span>
+      {exp.tag && <Tag>{exp.tag}</Tag>}
+    </Period>
     <Header onClick={onToggle} aria-expanded={isOpen}>
       <span>
         <Company>▮ {exp.company}</Company>
