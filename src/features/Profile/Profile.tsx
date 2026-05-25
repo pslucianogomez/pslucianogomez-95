@@ -121,7 +121,7 @@ export const Profile = () => {
         </div>
       </Top>
       <Credential>⬢ {profile.credential[language]}</Credential>
-      <Bio>{profile.bio[language]}</Bio>
+      {profile.bio[language] && <Bio>{profile.bio[language]}</Bio>}
       <Actions>
         <Button $variant="primary" onClick={() => open('contact', '/contact')}>
           {t('profile.hireMe')}
@@ -137,14 +137,18 @@ export const Profile = () => {
           <SocialLink key={s.label} href={s.href} target="_blank" rel="noopener noreferrer">{s.label}</SocialLink>
         ))}
       </Socials>
-      <Section>
-        <SectionHeading>{t('profile.about')}</SectionHeading>
-        <Prose>{profile.intro[language]}</Prose>
-      </Section>
-      <Section>
-        <SectionHeading>{t('profile.career')}</SectionHeading>
-        <Prose>{profile.career[language]}</Prose>
-      </Section>
+      {profile.intro[language] && (
+        <Section>
+          <SectionHeading>{t('profile.about')}</SectionHeading>
+          <Prose>{profile.intro[language]}</Prose>
+        </Section>
+      )}
+      {profile.career[language] && (
+        <Section>
+          <SectionHeading>{t('profile.career')}</SectionHeading>
+          <Prose>{profile.career[language]}</Prose>
+        </Section>
+      )}
     </>
   );
 };
