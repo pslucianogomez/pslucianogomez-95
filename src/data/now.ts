@@ -23,7 +23,11 @@ export const now: NowRow[] = [
         note: { en: 'multi-branch order system · 6 stores', es: 'sistema de pedidos multi-sucursal · 6 sucursales' },
       },
       { label: 'calculoselectricos.com.ar', href: 'https://calculoselectricos.com.ar' },
-      { label: 'academic.oup.com', href: 'https://academic.oup.com' },
+      {
+        label: 'academic.oup.com',
+        href: 'https://academic.oup.com',
+        note: { en: '(contractor)', es: '(contractor)' },
+      },
     ],
   },
 ];
