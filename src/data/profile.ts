@@ -17,8 +17,8 @@ export const profile: ProfileData = {
     es: 'Certificado Profesional de Microsoft AI & ML Engineering',
   },
   bio: {
-    en: "15 years writing C#. Tired of building everyone else's roadmap — now I build my own, and for a few clients I actually choose. Córdoba, mate in hand, GMT-3.",
-    es: '15 años escribiendo C#. Me cansé de construir el roadmap de otros — ahora construyo el mío y el de unos pocos clientes que elijo. Córdoba, mate en mano, GMT-3.',
+    en: "15 years writing C#. Tired of building everyone else's roadmap — now I build my own, and for a few clients I actually choose, always mate in hand. Córdoba, GMT-3.",
+    es: '15 años escribiendo C#. Me cansé de construir el roadmap de otros — ahora construyo el mío y el de unos pocos clientes que elijo, siempre mate en mano. Córdoba, GMT-3.',
   },
   intro: {
     en: "I write code the way I drink mate: slowly, in rounds, and I'd rather share it with people I actually want to work with. After 15 years building software for everyone else, I'm betting the next decade on three things — my own products, AI integration, and clients who ship.",
