@@ -2,6 +2,7 @@ export interface NowLink {
   label: string;
   href: string;
   note?: { en: string; es: string }; // short context shown under the link
+  featured?: boolean; // own product — rendered prominently, title typography
 }
 
 export interface NowRow {
@@ -18,11 +19,16 @@ export const now: NowRow[] = [
     label: 'CURRENTLY',
     items: [
       {
+        label: 'calculoselectricos.com.ar',
+        href: 'https://calculoselectricos.com.ar',
+        featured: true,
+        note: { en: '(own product) · Blazor', es: '(producto propio) · Blazor' },
+      },
+      {
         label: 'farmaciasmartinez.com.ar',
         href: 'https://farmaciasmartinez.com.ar',
         note: { en: 'multi-branch order system · 6 stores · (consultant)', es: 'sistema de pedidos multi-sucursal · 6 sucursales · (consultor)' },
       },
-      { label: 'calculoselectricos.com.ar', href: 'https://calculoselectricos.com.ar' },
       {
         label: 'academic.oup.com',
         href: 'https://academic.oup.com',

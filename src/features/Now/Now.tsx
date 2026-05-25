@@ -64,6 +64,24 @@ const ItemNote = styled.span`
   padding-left: 14px;
 `;
 
+// Featured = own product. Rendered with the site's title typography
+// (display font, larger) so it stands out above the consulting work.
+const FeaturedLink = styled.a`
+  display: inline-block;
+  font-family: ${({ theme }) => theme.fontFamily.display};
+  font-size: ${({ theme }) => theme.fontSize.lg};
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  color: ${({ theme }) => theme.colors.ink};
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  &::before {
+    content: '▸ ';
+    color: ${({ theme }) => theme.colors.btc};
+  }
+  &:hover { color: ${({ theme }) => theme.colors.btcDeep}; text-decoration: underline; }
+`;
+
 const ComingSoon = styled.section`
   margin-top: ${({ theme }) => theme.space['5']}px;
 `;
@@ -211,7 +229,11 @@ export const Now = () => {
               <Items>
                 {r.items.map((it) => (
                   <li key={it.href}>
-                    <ItemLink href={it.href} target="_blank" rel="noopener noreferrer">{it.label}</ItemLink>
+                    {it.featured ? (
+                      <FeaturedLink href={it.href} target="_blank" rel="noopener noreferrer">{it.label}</FeaturedLink>
+                    ) : (
+                      <ItemLink href={it.href} target="_blank" rel="noopener noreferrer">{it.label}</ItemLink>
+                    )}
                     {it.note && <ItemNote>{it.note[language]}</ItemNote>}
                   </li>
                 ))}
