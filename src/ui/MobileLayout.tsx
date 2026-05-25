@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { useState, type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { Panel } from './Panel';
 import { Glyph, type GlyphName } from './Glyph';
 import { StatusStrip } from './Desktop/StatusStrip';
 import { ErrorBoundary } from './ErrorBoundary';
 import { useLanguage } from '../contexts/LanguageContext';
-import type { WindowId } from '../contexts/WindowsContext';
+import { useWindows, type WindowId } from '../contexts/WindowsContext';
 
 // Full-screen content area between the status strip (34px) and bottom nav (56px).
 const Screen = styled.div`
@@ -57,17 +57,21 @@ const NavBtn = styled.button<{ $active: boolean }>`
   cursor: pointer;
 `;
 
-const ORDER: Array<{ id: WindowId; glyph: GlyphName; tKey: string }> = [
-  { id: 'profile',    glyph: 'user',      tKey: 'icon.profile' },
-  { id: 'now',        glyph: 'pulse',     tKey: 'icon.now' },
-  { id: 'stack',      glyph: 'box',       tKey: 'icon.stack' },
-  { id: 'experience', glyph: 'briefcase', tKey: 'icon.experience' },
-  { id: 'contact',    glyph: 'mail',      tKey: 'icon.contact' },
+const ORDER: Array<{ id: WindowId; route: string; glyph: GlyphName; tKey: string }> = [
+  { id: 'profile',    route: '/profile',    glyph: 'user',      tKey: 'icon.profile' },
+  { id: 'now',        route: '/now',        glyph: 'pulse',     tKey: 'icon.now' },
+  { id: 'stack',      route: '/stack',      glyph: 'box',       tKey: 'icon.stack' },
+  { id: 'experience', route: '/experience', glyph: 'briefcase', tKey: 'icon.experience' },
+  { id: 'contact',    route: '/contact',    glyph: 'mail',      tKey: 'icon.contact' },
 ];
 
 export const MobileLayout = ({ render }: { render: (id: WindowId) => ReactNode }) => {
   const { t, language, setLanguage } = useLanguage();
-  const [active, setActive] = useState<WindowId>(ORDER[0].id);
+  const { open, topId } = useWindows();
+
+  // Active section is driven by WindowsContext (shared with desktop), so any
+  // open(id) — e.g. the Profile "Contacto" button — switches the tab too.
+  const active: WindowId = topId && ORDER.some((o) => o.id === topId) ? topId : ORDER[0].id;
   const activeMeta = ORDER.find((o) => o.id === active) ?? ORDER[0];
 
   return (
@@ -82,7 +86,7 @@ export const MobileLayout = ({ render }: { render: (id: WindowId) => ReactNode }
           <NavBtn
             key={o.id}
             $active={active === o.id}
-            onClick={() => setActive(o.id)}
+            onClick={() => open(o.id, o.route)}
             aria-label={t(o.tKey)}
             aria-current={active === o.id}
           >
