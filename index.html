@@ -29,10 +29,55 @@
   <meta name="twitter:image" content="/logo1.png" />
 
   <meta name="robots" content="index, follow" />
+
+  <!-- Structured data for search engines (read without rendering JS) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Pedro S. Luciano Gomez",
+    "jobTitle": "Desarrollador Senior .NET Full Stack",
+    "url": "https://pslucianogomez.com.ar/",
+    "email": "pslucianogomez@gmail.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Córdoba", "addressCountry": "AR" },
+    "sameAs": [
+      "https://www.linkedin.com/in/pslucianogomez",
+      "https://github.com/pslucianogomez"
+    ],
+    "knowsAbout": ["C#", ".NET", "Azure", "Blazor", "SQL Server", "React", "AI/ML"]
+  }
+  </script>
 </head>
 
 <body>
   <div id="root"></div>
+
+  <!-- Fallback content for crawlers / clients without JS (the app is an SPA) -->
+  <noscript>
+    <h1>Pedro S. Luciano Gomez — Desarrollador Senior .NET Full Stack</h1>
+    <p>15 años escribiendo C#. Construyo mis propios productos y trabajo con clientes elegidos, desde Córdoba, Argentina (GMT-3).</p>
+    <p>Stack: .NET, Azure, Blazor, SQL Server, React, cada vez más IA/ML.</p>
+    <h2>Experiencia</h2>
+    <ul>
+      <li>Tarmac — Recuro Health (telemedicina), 2022–presente</li>
+      <li>Quisitive — LedgerPay (fintech), 2021–2023</li>
+      <li>Venon Solutions — The Walker Group, 2020–2021</li>
+      <li>Santex — ITA Group (reconocimiento), 2017–2020</li>
+      <li>Agilesight — Microsoft (CRM), 2015–2017</li>
+      <li>Globant — OCA, Deloitte, AutoDesk</li>
+      <li>Vates — Intel, 2010–2012</li>
+    </ul>
+    <h2>Productos y proyectos</h2>
+    <ul>
+      <li>calculoselectricos.com.ar — producto propio (Blazor)</li>
+      <li>farmaciasmartinez.com.ar — sistema de pedidos multi-sucursal, 6 sucursales (consultor)</li>
+      <li>academic.oup.com — Oxford University Press (contractor)</li>
+    </ul>
+    <p>Contacto: <a href="mailto:pslucianogomez@gmail.com">pslucianogomez@gmail.com</a> ·
+       <a href="https://www.linkedin.com/in/pslucianogomez">LinkedIn</a> ·
+       <a href="https://github.com/pslucianogomez">GitHub</a></p>
+  </noscript>
+
   <script type="module" src="/src/main.tsx"></script>
 </body>
 
