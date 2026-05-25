@@ -20,7 +20,7 @@ export const now: NowRow[] = [
       {
         label: 'farmaciasmartinez.com.ar',
         href: 'https://farmaciasmartinez.com.ar',
-        note: { en: 'multi-branch order system · 6 stores', es: 'sistema de pedidos multi-sucursal · 6 sucursales' },
+        note: { en: 'multi-branch order system · 6 stores · (consultant)', es: 'sistema de pedidos multi-sucursal · 6 sucursales · (consultor)' },
       },
       { label: 'calculoselectricos.com.ar', href: 'https://calculoselectricos.com.ar' },
       {
